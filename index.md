@@ -6,7 +6,8 @@
 
 ### Bank Fraud Protection
 
-<img src="images/7054834.jpg?raw=true"/>
+<img src="images/7054834.jpg?raw=true" width="300" height="200" alt="My Image">
+
 
 Bank ABC wants to improve its ability to recognize if a transaction is fraudulent. As a data scientist, I was tasked with finding a trackable
 approach to improving the current process in place. 
