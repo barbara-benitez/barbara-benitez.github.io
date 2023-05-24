@@ -4,7 +4,9 @@
 
 ### Learn About My Projects
 
-## Banking Fraud Protectio
+### Bank Fraud Protection
+
+
 
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
