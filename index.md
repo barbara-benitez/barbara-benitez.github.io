@@ -4,6 +4,8 @@
 
 ### Learn About My Projects
 
+## Banking Fraud Protectio
+
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
