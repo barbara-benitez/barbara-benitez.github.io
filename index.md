@@ -4,13 +4,15 @@
 
 ### Learn About My Projects
 
-### Bank Fraud Protection
+### Credit Card Fraud Detection
 
 <img src="images/7054834.jpg?raw=true" width="400" height="300" alt="My Image">
 image by Freepik
 
 Bank ABC wants to improve its ability to recognize if a transaction is fraudulent. As a data scientist, I was tasked with finding a trackable
 approach to improving the current process in place. 
+
+Fraud is a costly part of the credit card industry. In fact, in 2022, the Nilson Report, a major publication which provides data for the banking industry, forecaset that the U.S. should expect a total loss of  $165.1 billion over the next 10 years due to fraudulent charges.
 
 
 #### [Internal Blog Post Project](/bank)
