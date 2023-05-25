@@ -20,6 +20,11 @@ My goal is to find a robust algorithm that can identify suspicious transactions 
 
 This problem will be approached using several supervised learning algorithms. Because a small number of transactions are fraudulent (only 0.17% of the transactions), it would be quite reasonable to just assume that all are legitamate from a probabilistic point of view, but it is costly to work from such a position. Instead, the more conservative route would be to best predict transactions that are suspicious without impacting most transactions. Ideally, the process of identification would capture as many truly fraudulent transactions while minimizing those which are falsely marked as fraudulent. 
 
+### Metrics Used for Evaluation
+
+<div align="center"> Model Accuracy
+
+
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
