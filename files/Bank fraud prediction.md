@@ -1,3 +1,6 @@
+## Loaded the libraries needed to classify the transactions.
+
+
 ```python
 import pandas as pd
 import numpy as np
@@ -16,8 +19,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.svm import SVC
 ```
 
-## download the data from Kaggle
-This was straightforward as the data were all available in a single csv file for download. 
+## Upload the dataset (previously downloaded from Kaggle)
+
 
 ```python
 df = pd.read_csv("creditcard.csv")
@@ -25,6 +28,27 @@ df = pd.read_csv("creditcard.csv")
 # make a clean copy of the data
 df_unprocessed = df.copy()
 ```
+
+# Preprocessing steps 
+1. Basic look at the DataFrame
+2. Handle missing values (none)
+3. Eliminate irrelevant data (eliminate time column)
+4. Rescale the numeric data (this will be done as part of a pipeline)
+5. Convert categorical data (none)
+
+# Basic look at the DataFrame
+
+
+```python
+df.shape
+```
+
+
+
+
+    (284807, 31)
+
+
 
 ## Get column names, basic datatypes and null-info for each column
 
@@ -73,19 +97,7 @@ df.info()
     memory usage: 67.4 MB
 
 
-## Look at the shape of the DataFrame
-
-
-```python
-df.shape
-```
-
-
-
-
-    (284807, 31)
-
-
+There are 31 columns of data with 284,807 rows. All datatypes are float, except the target variable which is coded as an integer datatype.
 
 ## Check for missing values
 
@@ -101,7 +113,10 @@ df.isnull().sum().sum()
 
 
 
-## Check the target data
+There were no missing data values in any of the columns! Forge on!
+
+## Look the target data 
+(coding 0 -  legitimate transaction, 1 - fraudulent transaction)
 
 
 ```python
@@ -116,6 +131,12 @@ df["class"].value_counts()
     Name: class, dtype: int64
 
 
+
+Nearly all of the transactions are legitimate so this makes the detection of fraudulent transactions tricky. 
+
+Even if we assume that all of the transactions are legitimate, the probability of making a mistake is really small so this won't be the best way to measure success. 
+
+Instead, we will think about the classification problem in terms of minimizing loss to the company, or minimizing the likelihood of a Type II error: incorrectly allowing a fraudulent transaction to be processed.
 
 
 ```python
@@ -366,13 +387,18 @@ df.describe()
 
 
 
-## Preprocessing 
-1. Handle missing values (none)
-2. Rescale the numeric data 
-3. Convert categorical data (none)
-4. Run through Pipeline
+The data values are on vary different scales. They will need rescaling prior to running through the classification algorithms.
 
-## Split the data: training v test
+## Drop the Time column from the data. 
+It does not have a meaning that is easily understood from the data.
+
+
+```python
+df = df.drop('Time', axis=1)
+```
+
+## Split the data: training data versus test data
+### The target data is in the last column of the data, labeled "class"
 
 
 ```python
@@ -385,6 +411,8 @@ y = df.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .2, random_state =10)
 ```
 
+Verify that the new arrays for the training data are appropriately sized.
+
 
 ```python
 X_train.shape
@@ -393,7 +421,7 @@ X_train.shape
 
 
 
-    (227845, 30)
+    (227845, 29)
 
 
 
@@ -482,7 +510,35 @@ confusion_lg
 
 
 ```python
-plt.imshow(confusion_lg, cmap='Yellows')
+typeII_lg = confusion_lg[1,0] / ( confusion_lg[1,0] + confusion_lg[0,1])
+```
+
+
+```python
+print("Logistic regression: the number of predicted type II errors is :, FN = ", confusion_lg[1, 0])
+print()
+print("This means that out of the ",confusion_lg[1,0]+confusion_lg[0,1]," total errors, ",
+      typeII_lg, "percent are Type II errors.")
+```
+
+    Logistic regression: the number of predicted type II errors is :, FN =  31
+    
+    This means that out of the  40  total errors,  0.775 percent are Type II errors.
+
+
+
+```python
+print("Type II errors by model:")
+print("Logistic Regression: ", typeII_lg)
+```
+
+    Type II errors by model:
+    Logistic Regression:  0.775
+
+
+
+```python
+plt.imshow(confusion_lg, cmap='Reds')
 # Add colorbar
 cbar = plt.colorbar()
 # Set labels and title
@@ -500,7 +556,7 @@ plt.show()
 
 
     
-![png](output_24_0.png)
+![png](output_35_0.png)
     
 
 
@@ -535,22 +591,21 @@ print(df.columns)
 model_random_forest.feature_importances_
 ```
 
-    Index(['Time', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10',
-           'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20',
-           'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount',
-           'class'],
+    Index(['V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10', 'V11',
+           'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20', 'V21',
+           'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount', 'class'],
           dtype='object')
 
 
 
 
 
-    array([0.00602265, 0.00677966, 0.00879006, 0.01637956, 0.02111284,
-           0.0081331 , 0.01157301, 0.01620858, 0.0046197 , 0.02919926,
-           0.07742697, 0.08812493, 0.13024559, 0.00314808, 0.14507588,
-           0.00645486, 0.08463231, 0.22975997, 0.0226117 , 0.00506199,
-           0.00849121, 0.0142374 , 0.00413376, 0.00247235, 0.00672323,
-           0.00355368, 0.01693118, 0.01183976, 0.00621856, 0.00403817])
+    array([0.00842184, 0.0067615 , 0.01288664, 0.02658881, 0.00726395,
+           0.00955841, 0.02468218, 0.00479116, 0.04078178, 0.09228906,
+           0.07068483, 0.14246561, 0.0028285 , 0.15091562, 0.00507509,
+           0.06294059, 0.20666051, 0.04620446, 0.00395223, 0.00723532,
+           0.01058561, 0.00690721, 0.00255953, 0.00644772, 0.00246227,
+           0.01278861, 0.0103704 , 0.00783888, 0.00705167])
 
 
 
@@ -558,10 +613,15 @@ model_random_forest.feature_importances_
 
 
 ```python
-print("Random Forest Model Accuracy: ", accuracy_score(y_test, y_pred_rf))
+rf_accuracy = accuracy_score(y_test, y_pred_rf)
 ```
 
-    Random Forest Model Accuracy:  0.9996137776061234
+
+```python
+print("Random Forest Model Accuracy: ", rf_accuracy)
+```
+
+    Random Forest Model Accuracy:  0.9996313331694814
 
 
 
@@ -580,11 +640,11 @@ plt.show()
 
 
     
-![png](output_32_0.png)
+![png](output_44_0.png)
     
 
 
-It appears that there are approximately 6 or so features that really impact the classification
+There are approximately 6 features that really impact the classification
 
 ## Run classification report for Random Forest Model
 
@@ -596,10 +656,10 @@ print(classification_report(y_test, y_pred_rf))
                   precision    recall  f1-score   support
     
                0       1.00      1.00      1.00     56868
-               1       0.99      0.78      0.87        94
+               1       0.99      0.79      0.88        94
     
         accuracy                           1.00     56962
-       macro avg       0.99      0.89      0.93     56962
+       macro avg       0.99      0.89      0.94     56962
     weighted avg       1.00      1.00      1.00     56962
     
 
@@ -615,8 +675,38 @@ confusion_rf
 
 
     array([[56867,     1],
-           [   21,    73]])
+           [   20,    74]])
 
+
+
+
+```python
+typeII_rf = confusion_rf[1,0] / ( confusion_rf[1,0]+confusion_rf[0,1])
+```
+
+
+```python
+print("Random forest classification: the number of predicted type II errors is :, FN = ", confusion_rf[1, 0])
+print()
+print("This means that out of the ",confusion_rf[1,0]+confusion_rf[0,1]," total errors, ",  
+     typeII_rf , "percent are Type II errors.")
+```
+
+    Random forest classification: the number of predicted type II errors is :, FN =  20
+    
+    This means that out of the  21  total errors,  0.9523809523809523 percent are Type II errors.
+
+
+
+```python
+print("Type II errors by model:")
+print("Logistic Regression: ", typeII_lg)
+print("Random Forest: ", typeII_rf)
+```
+
+    Type II errors by model:
+    Logistic Regression:  0.775
+    Random Forest:  0.9523809523809523
 
 
 
@@ -639,7 +729,7 @@ plt.show()
 
 
     
-![png](output_37_0.png)
+![png](output_52_0.png)
     
 
 
@@ -695,22 +785,26 @@ pipeline_rf_pca.fit(X_train, y_train)
 
 
 ```python
-pipeline_rf_pca.score(X_test, y_test)
+rf_PCA_accuracy =  pipeline_rf_pca.score(X_test, y_test)
 ```
 
-
-
-
-    0.9995259997893332
-
-
+Determine which model has a higher accuracy score: Random forest with or without PCA
 
 
 ```python
-# it turns out that the model was better without pca
+rf_PCA_accuracy > rf_accuracy
 ```
 
-## Check the confusion matrix just the same
+
+
+
+    False
+
+
+
+Turns out that the random forest model accuracy was higher without pca.
+
+## Check the confusion matrix just the same to see the breakdown of type I versus type II errors
 
 
 ```python
@@ -727,8 +821,42 @@ confusion_rf_pca
 
 
     array([[56864,     4],
-           [   23,    71]])
+           [   25,    69]])
 
+
+
+
+```python
+typeII_rf_pca = confusion_rf_pca[1,0] / ( confusion_rf_pca[1,0]+confusion_rf_pca[0,1])
+```
+
+
+```python
+print("Random forest classification with PCA: the number of predicted type II errors is :, FN = ", confusion_rf_pca[1, 0])
+print()
+print("This means that out of the ",confusion_rf_pca[1,0]+confusion_rf_pca[0,1]," total errors, ",
+      typeII_rf_pca, "percent are Type II errors.")
+```
+
+    Random forest classification with PCA: the number of predicted type II errors is :, FN =  25
+    
+    This means that out of the  29  total errors,  0.8620689655172413 percent are Type II errors.
+
+
+This means that, although the overall accuracy of the model decreased, the overall number of costly Type II errors was decreased. Applying the PCA to the Random Forest model was a good move in actuality.
+
+
+```python
+print("Type II errors by model:")
+print("Logistic Regression: ", typeII_lg)
+print("Random Forest: ", typeII_rf)
+print("Random Forest with PCA: ", typeII_rf_pca)      
+```
+
+    Type II errors by model:
+    Logistic Regression:  0.775
+    Random Forest:  0.9523809523809523
+    Random Forest with PCA:  0.8620689655172413
 
 
 
@@ -751,7 +879,7 @@ plt.show()
 
 
     
-![png](output_47_0.png)
+![png](output_68_0.png)
     
 
 
@@ -820,6 +948,42 @@ confusion_SVC
 
 
 ```python
+typeII_SVC = confusion_SVC[1,0] / ( confusion_SVC[1,0] + confusion_SVC[0,1])
+```
+
+
+```python
+print("Support Vector Machine: the number of predicted type II errors is :, FN = ", confusion_SVC[1, 0])
+print()
+print("This means that out of the ",confusion_SVC[1,0]+confusion_SVC[0,1]," total errors, ",
+      typeII_SVC, "percent are Type II errors.")
+```
+
+    Support Vector Machine: the number of predicted type II errors is :, FN =  18
+    
+    This means that out of the  26  total errors,  0.6923076923076923 percent are Type II errors.
+
+
+
+```python
+print("Type II errors by model:")
+print("Logistic Regression: ", typeII_lg)
+print("Random Forest: ", typeII_rf)
+print("Random Forest with PCA: ", typeII_rf_pca) 
+print("SVC: ", typeII_SVC)
+```
+
+    Type II errors by model:
+    Logistic Regression:  0.775
+    Random Forest:  0.9523809523809523
+    Random Forest with PCA:  0.8620689655172413
+    SVC:  0.6923076923076923
+
+
+## The support vector machine algorithm actually had the lowest Type II errors so it would generally be preferable for predicting fraudulent charges based on this dataset.
+
+
+```python
 plt.imshow(confusion_SVC, cmap='Reds')
 # Add colorbar
 cbar = plt.colorbar()
@@ -838,11 +1002,96 @@ plt.show()
 
 
     
-![png](output_54_0.png)
+![png](output_79_0.png)
     
+
+
+Compute the probability of a fraudulent transaction, p, based on this dataset. 
+p = no of fraudulent transactions / no of total transactions
+
+
+```python
+nonzero_count = np.count_nonzero(df["class"])
+```
+
+
+```python
+total_rows = df.shape[0]
+# Calculate the ratio of nonzero values to the total number of rows
+p_fraud = nonzero_count / total_rows
+print("The probability of a fraudulent transaction is :", p_fraud)
+```
+
+    The probability of a fraudulent transaction is : 0.001727485630620034
+
+
+## Compute the expected value of a transaction
+Since the credit card company charges a fee of 1-3% for the use of a credit card, we will assume that the rate is 2% for simplicity. 
+
+Now the expected value is broken into two parts:
+1. If the transaction is valid and approved, then the company will make 0.02* amount of the transaction.
+2. If the transaction is fraudulent and approved, then the company will be liable for the full amount of the transaction and will not be paid a charge for the transaction. 
+
+### E = (1-p_fraud) * fee_charge * amount -  p_fraud * (amount)
+
+
+```python
+# Calculate the net expected profit for 
+expected_value = sum(df.apply(lambda row: (row["Amount"] * 0.02 * (1 - p_fraud))-(row["Amount"] * p_fraud),
+                              axis=1))
+
+# Output the result
+print("The expected value of the actual transactions is: $", "{:.2f}".format(expected_value))
+print()
+print('That is, based on the current means for identifying fraudulent transactions, the net expected "profit" \n\
+    to the credit card company should be approximately $', "{:.2f}".format(expected_value), 
+      "using the provided transaction amounts and the current number of fraudulent charges.")
+```
+
+    The expected value of the actual transactions is: $ 458914.43
+    
+    That is, based on the current means for identifying fraudulent transactions, the net expected "profit" 
+        to the credit card company should be approximately $ 458914.43 using the provided transaction amounts and the current number of fraudulent charges.
+
+
+## Given the adoption of the SVC model, we define the probability of missing a fraudelent charge to be p_fraud_new
+
+
+```python
+p_fraud_new = confusion_SVC[1,0] / total_rows
+
+# Verify that the new likelihood of detecting the fraudulent charges is lower.
+p_fraud_new < p_fraud
+```
+
+
+
+
+    True
+
+
+
+# Calculate the revised expected profit based on the improved detection 
+
+
+```python
+expected_value_new = sum(df.apply(lambda row: (row["Amount"] * 0.02 * (1 - p_fraud_new))-\
+                                  (row["Amount"] * p_fraud_new),
+                              axis=1))
+
+print("The improved net expected profit based on the provided transactions would be $", \
+      "{:.2f}".format(expected_value_new))
+```
+
+    The improved net expected profit based on the provided transactions would be $ 501629.70
 
 
 
 ```python
-# The support vector machine algorithm actually had the lowest Type II errors so it would generally be preferable
+# compute the increase in net profit
+profit_incr = expected_value_new - expected_value
+print("The increase in net profit would be $",  "{:.2f}".format(profit_incr))
 ```
+
+    The increase in net profit would be $ 42715.27
+
