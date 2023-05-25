@@ -22,7 +22,7 @@ This problem will be approached using several supervised learning algorithms. Be
 
 ### Metrics Used for Evaluation
 
-<center> **Confusion Matrix **</center>
+<center> **Confusion Matrix ** </center>
   
 |                 | Predicted Negative | Predicted Positive   |
 |-----------------|--------------------|----------------------|
