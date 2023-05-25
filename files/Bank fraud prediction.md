@@ -17,7 +17,7 @@ from sklearn.svm import SVC
 ```
 
 ## download the data from Kaggle
-
+This was straightforward as the data were all available in a single csv file for download. 
 
 ```python
 df = pd.read_csv("creditcard.csv")
