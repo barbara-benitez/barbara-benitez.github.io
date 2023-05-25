@@ -18,7 +18,7 @@ My goal is to find a robust algorithm that can identify suspicious transactions 
 
 ### Solving the problem
 
-This problem will be approached using several supervised learning algorithms. Each will be summarized.
+This problem will be approached using several supervised learning algorithms. Because a small number of transactions are fraudulent
 
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
