@@ -603,7 +603,7 @@ plt.show()
 
 
     
-![png](output_35_0.png)
+![Alt Text](images/output_35_0.png)
     
 
 
@@ -1021,7 +1021,7 @@ plt.show()
 ```
 
 
-    
+<img src="images/output_79_0.png?raw=true"/>    
 ![png](output_79_0.png)
     
 
