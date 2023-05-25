@@ -454,7 +454,7 @@ df.describe()
 
 The data values are on vary different scales. They will need rescaling prior to running through the classification algorithms.
 
-## Drop the Time column from the data. 
+## Drop the "Time" column from the data. 
 It does not have a meaning that is easily understood from the data.
 
 
@@ -504,7 +504,6 @@ y_train.shape
 
 # Logistic Regression model
 
-
 ```python
 pipeline_logistic = Pipeline([
     ("Scaler", StandardScaler()),
@@ -513,9 +512,10 @@ pipeline_logistic = Pipeline([
 print(pipeline_logistic)
 ```
 
-    Pipeline(steps=[('Scaler', StandardScaler()),
+```python
+Pipeline(steps=[('Scaler', StandardScaler()),
                     ('Logistic Regression', LogisticRegression(max_iter=1000))])
-
+```
 
 
 ```python
