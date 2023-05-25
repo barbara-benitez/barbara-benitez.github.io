@@ -22,7 +22,7 @@ This problem will be approached using several supervised learning algorithms. Be
 
 ### Metrics Used for Evaluation
 
-<center> Confusion Matrix </center>
+**Confusion Matrix**
 
 The confusion matrix is a valuable tool for evaluating the performance of classification models. It provides a clear representation of the relationship between predicted and actual values, enabling the calculation of various metrics such as accuracy, precision, recall, and F1 score.
   
