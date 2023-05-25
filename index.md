@@ -62,7 +62,854 @@ The datasest was made up of 284,807 rows of data with 31 columns. These data wer
 I also applied PCA to see if
 
 ## The process
+```python
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.decomposition import PCA
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.svm import SVC
+```
 
+## download the data from Kaggle
+This was straightforward as the data were all available in a single csv file for download. 
+
+```python
+df = pd.read_csv("creditcard.csv")
+#
+# make a clean copy of the data
+df_unprocessed = df.copy()
+```
+
+## Get column names, basic datatypes and null-info for each column
+
+
+```python
+df.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    RangeIndex: 284807 entries, 0 to 284806
+    Data columns (total 31 columns):
+     #   Column  Non-Null Count   Dtype  
+    ---  ------  --------------   -----  
+     0   Time    284807 non-null  float64
+     1   V1      284807 non-null  float64
+     2   V2      284807 non-null  float64
+     3   V3      284807 non-null  float64
+     4   V4      284807 non-null  float64
+     5   V5      284807 non-null  float64
+     6   V6      284807 non-null  float64
+     7   V7      284807 non-null  float64
+     8   V8      284807 non-null  float64
+     9   V9      284807 non-null  float64
+     10  V10     284807 non-null  float64
+     11  V11     284807 non-null  float64
+     12  V12     284807 non-null  float64
+     13  V13     284807 non-null  float64
+     14  V14     284807 non-null  float64
+     15  V15     284807 non-null  float64
+     16  V16     284807 non-null  float64
+     17  V17     284807 non-null  float64
+     18  V18     284807 non-null  float64
+     19  V19     284807 non-null  float64
+     20  V20     284807 non-null  float64
+     21  V21     284807 non-null  float64
+     22  V22     284807 non-null  float64
+     23  V23     284807 non-null  float64
+     24  V24     284807 non-null  float64
+     25  V25     284807 non-null  float64
+     26  V26     284807 non-null  float64
+     27  V27     284807 non-null  float64
+     28  V28     284807 non-null  float64
+     29  Amount  284807 non-null  float64
+     30  class   284807 non-null  int64  
+    dtypes: float64(30), int64(1)
+    memory usage: 67.4 MB
+
+
+## Look at the shape of the DataFrame
+
+
+```python
+df.shape
+```
+
+
+
+
+    (284807, 31)
+
+
+
+## Check for missing values
+
+
+```python
+df.isnull().sum().sum()
+```
+
+
+
+
+    0
+
+
+
+## Check the target data
+
+
+```python
+df["class"].value_counts()
+```
+
+
+
+
+    0    284315
+    1       492
+    Name: class, dtype: int64
+
+
+
+
+```python
+df.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>V1</th>
+      <th>V2</th>
+      <th>V3</th>
+      <th>V4</th>
+      <th>V5</th>
+      <th>V6</th>
+      <th>V7</th>
+      <th>V8</th>
+      <th>V9</th>
+      <th>...</th>
+      <th>V21</th>
+      <th>V22</th>
+      <th>V23</th>
+      <th>V24</th>
+      <th>V25</th>
+      <th>V26</th>
+      <th>V27</th>
+      <th>V28</th>
+      <th>Amount</th>
+      <th>class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>284807.000000</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>...</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>2.848070e+05</td>
+      <td>284807.000000</td>
+      <td>284807.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>94813.859575</td>
+      <td>1.759061e-12</td>
+      <td>-8.251130e-13</td>
+      <td>-9.654937e-13</td>
+      <td>8.321385e-13</td>
+      <td>1.649999e-13</td>
+      <td>4.248366e-13</td>
+      <td>-3.054600e-13</td>
+      <td>8.777971e-14</td>
+      <td>-1.179749e-12</td>
+      <td>...</td>
+      <td>-3.405756e-13</td>
+      <td>-5.723197e-13</td>
+      <td>-9.725856e-13</td>
+      <td>1.464150e-12</td>
+      <td>-6.987102e-13</td>
+      <td>-5.617874e-13</td>
+      <td>3.332082e-12</td>
+      <td>-3.518874e-12</td>
+      <td>88.349619</td>
+      <td>0.001727</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>47488.145955</td>
+      <td>1.958696e+00</td>
+      <td>1.651309e+00</td>
+      <td>1.516255e+00</td>
+      <td>1.415869e+00</td>
+      <td>1.380247e+00</td>
+      <td>1.332271e+00</td>
+      <td>1.237094e+00</td>
+      <td>1.194353e+00</td>
+      <td>1.098632e+00</td>
+      <td>...</td>
+      <td>7.345240e-01</td>
+      <td>7.257016e-01</td>
+      <td>6.244603e-01</td>
+      <td>6.056471e-01</td>
+      <td>5.212781e-01</td>
+      <td>4.822270e-01</td>
+      <td>4.036325e-01</td>
+      <td>3.300833e-01</td>
+      <td>250.120109</td>
+      <td>0.041527</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>-5.640751e+01</td>
+      <td>-7.271573e+01</td>
+      <td>-4.832559e+01</td>
+      <td>-5.683171e+00</td>
+      <td>-1.137433e+02</td>
+      <td>-2.616051e+01</td>
+      <td>-4.355724e+01</td>
+      <td>-7.321672e+01</td>
+      <td>-1.343407e+01</td>
+      <td>...</td>
+      <td>-3.483038e+01</td>
+      <td>-1.093314e+01</td>
+      <td>-4.480774e+01</td>
+      <td>-2.836627e+00</td>
+      <td>-1.029540e+01</td>
+      <td>-2.604551e+00</td>
+      <td>-2.256568e+01</td>
+      <td>-1.543008e+01</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>54201.500000</td>
+      <td>-9.203734e-01</td>
+      <td>-5.985499e-01</td>
+      <td>-8.903648e-01</td>
+      <td>-8.486401e-01</td>
+      <td>-6.915971e-01</td>
+      <td>-7.682956e-01</td>
+      <td>-5.540759e-01</td>
+      <td>-2.086297e-01</td>
+      <td>-6.430976e-01</td>
+      <td>...</td>
+      <td>-2.283949e-01</td>
+      <td>-5.423504e-01</td>
+      <td>-1.618463e-01</td>
+      <td>-3.545861e-01</td>
+      <td>-3.171451e-01</td>
+      <td>-3.269839e-01</td>
+      <td>-7.083953e-02</td>
+      <td>-5.295979e-02</td>
+      <td>5.600000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>84692.000000</td>
+      <td>1.810880e-02</td>
+      <td>6.548556e-02</td>
+      <td>1.798463e-01</td>
+      <td>-1.984653e-02</td>
+      <td>-5.433583e-02</td>
+      <td>-2.741871e-01</td>
+      <td>4.010308e-02</td>
+      <td>2.235804e-02</td>
+      <td>-5.142873e-02</td>
+      <td>...</td>
+      <td>-2.945017e-02</td>
+      <td>6.781943e-03</td>
+      <td>-1.119293e-02</td>
+      <td>4.097606e-02</td>
+      <td>1.659350e-02</td>
+      <td>-5.213911e-02</td>
+      <td>1.342146e-03</td>
+      <td>1.124383e-02</td>
+      <td>22.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>139320.500000</td>
+      <td>1.315642e+00</td>
+      <td>8.037239e-01</td>
+      <td>1.027196e+00</td>
+      <td>7.433413e-01</td>
+      <td>6.119264e-01</td>
+      <td>3.985649e-01</td>
+      <td>5.704361e-01</td>
+      <td>3.273459e-01</td>
+      <td>5.971390e-01</td>
+      <td>...</td>
+      <td>1.863772e-01</td>
+      <td>5.285536e-01</td>
+      <td>1.476421e-01</td>
+      <td>4.395266e-01</td>
+      <td>3.507156e-01</td>
+      <td>2.409522e-01</td>
+      <td>9.104512e-02</td>
+      <td>7.827995e-02</td>
+      <td>77.165000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>172792.000000</td>
+      <td>2.454930e+00</td>
+      <td>2.205773e+01</td>
+      <td>9.382558e+00</td>
+      <td>1.687534e+01</td>
+      <td>3.480167e+01</td>
+      <td>7.330163e+01</td>
+      <td>1.205895e+02</td>
+      <td>2.000721e+01</td>
+      <td>1.559499e+01</td>
+      <td>...</td>
+      <td>2.720284e+01</td>
+      <td>1.050309e+01</td>
+      <td>2.252841e+01</td>
+      <td>4.584549e+00</td>
+      <td>7.519589e+00</td>
+      <td>3.517346e+00</td>
+      <td>3.161220e+01</td>
+      <td>3.384781e+01</td>
+      <td>25691.160000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 31 columns</p>
+</div>
+
+
+
+## Preprocessing 
+1. Handle missing values (none)
+2. Rescale the numeric data 
+3. Convert categorical data (none)
+4. Run through Pipeline
+
+## Split the data: training v test
+
+
+```python
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
+```
+
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .2, random_state =10)
+```
+
+
+```python
+X_train.shape
+```
+
+
+
+
+    (227845, 30)
+
+
+
+
+```python
+y_train.shape
+```
+
+
+
+
+    (227845,)
+
+
+
+# Logistic Regression model
+
+
+```python
+pipeline_logistic = Pipeline([
+    ("Scaler", StandardScaler()),
+    ("Logistic Regression", LogisticRegression(max_iter=1000))
+])
+print(pipeline_logistic)
+```
+
+    Pipeline(steps=[('Scaler', StandardScaler()),
+                    ('Logistic Regression', LogisticRegression(max_iter=1000))])
+
+
+
+```python
+pipeline_logistic.fit(X_train, y_train)
+```
+
+
+
+
+<style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()),
+                (&#x27;Logistic Regression&#x27;, LogisticRegression(max_iter=1000))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" ><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()),
+                (&#x27;Logistic Regression&#x27;, LogisticRegression(max_iter=1000))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" ><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" ><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=1000)</pre></div></div></div></div></div></div></div>
+
+
+
+
+```python
+pipeline_logistic.fit(X_train, y_train)
+```
+
+
+
+
+<style>#sk-container-id-2 {color: black;background-color: white;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()),
+                (&#x27;Logistic Regression&#x27;, LogisticRegression(max_iter=1000))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" ><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()),
+                (&#x27;Logistic Regression&#x27;, LogisticRegression(max_iter=1000))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox" ><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox" ><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=1000)</pre></div></div></div></div></div></div></div>
+
+
+
+
+```python
+pipeline_logistic.score(X_test, y_test)
+```
+
+
+
+
+    0.9992977774656788
+
+
+
+
+```python
+# generate confusion matrix for logistic regression model
+y_pred_logistic = pipeline_logistic.predict(X_test)
+confusion_lg = confusion_matrix(y_test, y_pred_logistic)
+confusion_lg
+```
+
+
+
+
+    array([[56859,     9],
+           [   31,    63]])
+
+
+
+
+```python
+plt.imshow(confusion_lg, cmap='Yellows')
+# Add colorbar
+cbar = plt.colorbar()
+# Set labels and title
+plt.xlabel("Predicted label")
+plt.ylabel("True label")
+plt.title("Confusion Matrix for Logistic Regression")
+# Add numeric labels to the plot
+for i in range(confusion_lg.shape[0]):
+    for j in range(confusion_lg.shape[1]):
+        plt.text(j, i, confusion_lg[i, j], ha="center", va="center", color="k")
+
+# Show the plot
+plt.show()
+```
+
+
+    
+![png](output_24_0.png)
+    
+
+
+## Random Forest Classification Model
+
+
+```python
+model_random_forest = RandomForestClassifier( criterion = 'gini',
+                                            max_depth = 8, # max depth of the tree
+                                            min_samples_split = 10, # min no of samples to check
+                                            random_state =5)
+model_random_forest.fit(X_train, y_train)
+```
+
+
+
+
+<style>#sk-container-id-3 {color: black;background-color: white;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>RandomForestClassifier(max_depth=8, min_samples_split=10, random_state=5)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" checked><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestClassifier</label><div class="sk-toggleable__content"><pre>RandomForestClassifier(max_depth=8, min_samples_split=10, random_state=5)</pre></div></div></div></div></div>
+
+
+
+
+```python
+y_pred_rf = model_random_forest.predict(X_test) 
+```
+
+## Look at the important features
+
+
+```python
+print(df.columns)
+model_random_forest.feature_importances_
+```
+
+    Index(['Time', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6', 'V7', 'V8', 'V9', 'V10',
+           'V11', 'V12', 'V13', 'V14', 'V15', 'V16', 'V17', 'V18', 'V19', 'V20',
+           'V21', 'V22', 'V23', 'V24', 'V25', 'V26', 'V27', 'V28', 'Amount',
+           'class'],
+          dtype='object')
+
+
+
+
+
+    array([0.00602265, 0.00677966, 0.00879006, 0.01637956, 0.02111284,
+           0.0081331 , 0.01157301, 0.01620858, 0.0046197 , 0.02919926,
+           0.07742697, 0.08812493, 0.13024559, 0.00314808, 0.14507588,
+           0.00645486, 0.08463231, 0.22975997, 0.0226117 , 0.00506199,
+           0.00849121, 0.0142374 , 0.00413376, 0.00247235, 0.00672323,
+           0.00355368, 0.01693118, 0.01183976, 0.00621856, 0.00403817])
+
+
+
+## Look at the accuracy of the model
+
+
+```python
+print("Random Forest Model Accuracy: ", accuracy_score(y_test, y_pred_rf))
+```
+
+    Random Forest Model Accuracy:  0.9996137776061234
+
+
+
+```python
+features = df.columns
+importances = model_random_forest.feature_importances_
+indices = np.argsort(importances)
+
+plt.title('Feature Importances')
+plt.barh(range(len(indices)), importances[indices], 
+         color = 'b', align = 'center')
+plt.yticks(range(len(indices)), [features[i] for i in indices])
+plt.xlabel("Relative Importance")
+plt.show()
+```
+
+
+    
+![png](output_32_0.png)
+    
+
+
+It appears that there are approximately 6 or so features that really impact the classification
+
+## Run classification report for Random Forest Model
+
+
+```python
+print(classification_report(y_test, y_pred_rf))
+```
+
+                  precision    recall  f1-score   support
+    
+               0       1.00      1.00      1.00     56868
+               1       0.99      0.78      0.87        94
+    
+        accuracy                           1.00     56962
+       macro avg       0.99      0.89      0.93     56962
+    weighted avg       1.00      1.00      1.00     56962
+    
+
+
+
+```python
+# generate a confusion matrix for the results of Random Forest
+confusion_rf = confusion_matrix(y_test, y_pred_rf)
+confusion_rf
+```
+
+
+
+
+    array([[56867,     1],
+           [   21,    73]])
+
+
+
+
+```python
+plt.imshow(confusion_rf, cmap='Reds')
+# Add colorbar
+cbar = plt.colorbar()
+# Set labels and title
+plt.xlabel("Predicted label")
+plt.ylabel("True label")
+plt.title("Confusion Matrix for Random Forest")
+# Add numeric labels to the plot
+for i in range(confusion_rf.shape[0]):
+    for j in range(confusion_rf.shape[1]):
+        plt.text(j, i, confusion_rf[i, j], ha="center", va="center", color="k")
+
+# Show the plot
+plt.show()
+```
+
+
+    
+![png](output_37_0.png)
+    
+
+
+## Run PCA to see if the model improves
+
+
+```python
+pipeline_rf_pca = Pipeline([
+    ('Scaler', StandardScaler()),
+    ('PCA', PCA(n_components = 6)),
+    ("Random Forest", RandomForestClassifier( criterion = 'gini',
+                                            max_depth = 8, # max depth of the tree
+                                            min_samples_split = 10, # min no of samples to check
+                                            random_state =5))
+])
+```
+
+
+```python
+pipeline_rf_pca
+```
+
+
+
+
+<style>#sk-container-id-4 {color: black;background-color: white;}#sk-container-id-4 pre{padding: 0;}#sk-container-id-4 div.sk-toggleable {background-color: white;}#sk-container-id-4 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-4 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-4 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-4 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-4 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-4 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-4 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-4 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-4 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-4 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-4 div.sk-item {position: relative;z-index: 1;}#sk-container-id-4 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-4 div.sk-item::before, #sk-container-id-4 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-4 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-4 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-4 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-4 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-4 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-4 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-4 div.sk-label-container {text-align: center;}#sk-container-id-4 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-4 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;PCA&#x27;, PCA(n_components=6)),
+                (&#x27;Random Forest&#x27;,
+                 RandomForestClassifier(max_depth=8, min_samples_split=10,
+                                        random_state=5))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;PCA&#x27;, PCA(n_components=6)),
+                (&#x27;Random Forest&#x27;,
+                 RandomForestClassifier(max_depth=8, min_samples_split=10,
+                                        random_state=5))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox" ><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">PCA</label><div class="sk-toggleable__content"><pre>PCA(n_components=6)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox" ><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestClassifier</label><div class="sk-toggleable__content"><pre>RandomForestClassifier(max_depth=8, min_samples_split=10, random_state=5)</pre></div></div></div></div></div></div></div>
+
+
+
+
+```python
+pipeline_rf_pca.fit(X_train, y_train)
+```
+
+
+
+
+<style>#sk-container-id-5 {color: black;background-color: white;}#sk-container-id-5 pre{padding: 0;}#sk-container-id-5 div.sk-toggleable {background-color: white;}#sk-container-id-5 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-5 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-5 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-5 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-5 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-5 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-5 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-5 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-5 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-5 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-5 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-5 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-5 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-5 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-5 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-5 div.sk-item {position: relative;z-index: 1;}#sk-container-id-5 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-5 div.sk-item::before, #sk-container-id-5 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-5 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-5 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-5 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-5 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-5 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-5 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-5 div.sk-label-container {text-align: center;}#sk-container-id-5 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-5 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-5" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;PCA&#x27;, PCA(n_components=6)),
+                (&#x27;Random Forest&#x27;,
+                 RandomForestClassifier(max_depth=8, min_samples_split=10,
+                                        random_state=5))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" ><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;PCA&#x27;, PCA(n_components=6)),
+                (&#x27;Random Forest&#x27;,
+                 RandomForestClassifier(max_depth=8, min_samples_split=10,
+                                        random_state=5))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox" ><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox" ><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">PCA</label><div class="sk-toggleable__content"><pre>PCA(n_components=6)</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox" ><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">RandomForestClassifier</label><div class="sk-toggleable__content"><pre>RandomForestClassifier(max_depth=8, min_samples_split=10, random_state=5)</pre></div></div></div></div></div></div></div>
+
+
+
+
+```python
+pipeline_rf_pca.score(X_test, y_test)
+```
+
+
+
+
+    0.9995259997893332
+
+
+
+
+```python
+# it turns out that the model was better without pca
+```
+
+## Check the confusion matrix just the same
+
+
+```python
+y_pred_rf_pca = pipeline_rf_pca.predict(X_test)
+```
+
+
+```python
+confusion_rf_pca = confusion_matrix(y_test, y_pred_rf_pca)
+confusion_rf_pca
+```
+
+
+
+
+    array([[56864,     4],
+           [   23,    71]])
+
+
+
+
+```python
+plt.imshow(confusion_rf_pca, cmap='Reds')
+# Add colorbar
+cbar = plt.colorbar()
+# Set labels and title
+plt.xlabel("Predicted label")
+plt.ylabel("True label")
+plt.title("Confusion Matrix for Random Forest with PCA")
+# Add numeric labels to the plot
+for i in range(confusion_rf_pca.shape[0]):
+    for j in range(confusion_rf_pca.shape[1]):
+        plt.text(j, i, confusion_rf_pca[i, j], ha="center", va="center", color="k")
+
+# Show the plot
+plt.show()
+```
+
+
+    
+![png](output_47_0.png)
+    
+
+
+## Use SVM to classify
+
+
+```python
+pipeline_SVC = Pipeline([
+    ("Scaler", StandardScaler()),
+    ("SVM", SVC(kernel = 'linear', 
+               C=1.0))
+])
+```
+
+
+```python
+pipeline_SVC
+```
+
+
+
+
+<style>#sk-container-id-6 {color: black;background-color: white;}#sk-container-id-6 pre{padding: 0;}#sk-container-id-6 div.sk-toggleable {background-color: white;}#sk-container-id-6 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-6 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-6 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-6 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-6 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-6 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-6 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-6 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-6 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-6 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-6 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-6 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-6 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-6 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-6 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-6 div.sk-item {position: relative;z-index: 1;}#sk-container-id-6 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-6 div.sk-item::before, #sk-container-id-6 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-6 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-6 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-6 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-6 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-6 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-6 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-6 div.sk-label-container {text-align: center;}#sk-container-id-6 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-6 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-6" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;SVM&#x27;, SVC(kernel=&#x27;linear&#x27;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox" ><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;SVM&#x27;, SVC(kernel=&#x27;linear&#x27;))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox" ><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-18" type="checkbox" ><label for="sk-estimator-id-18" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC(kernel=&#x27;linear&#x27;)</pre></div></div></div></div></div></div></div>
+
+
+
+
+```python
+pipeline_SVC.fit(X_train, y_train)
+```
+
+
+
+
+<style>#sk-container-id-7 {color: black;background-color: white;}#sk-container-id-7 pre{padding: 0;}#sk-container-id-7 div.sk-toggleable {background-color: white;}#sk-container-id-7 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-7 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-7 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-7 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-7 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-7 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-7 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-7 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-7 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-7 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-7 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-7 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-7 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-7 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-7 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-7 div.sk-item {position: relative;z-index: 1;}#sk-container-id-7 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-7 div.sk-item::before, #sk-container-id-7 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-7 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-7 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-7 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-7 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-7 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-7 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-7 div.sk-label-container {text-align: center;}#sk-container-id-7 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-7 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-7" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;SVM&#x27;, SVC(kernel=&#x27;linear&#x27;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-19" type="checkbox" ><label for="sk-estimator-id-19" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;Scaler&#x27;, StandardScaler()), (&#x27;SVM&#x27;, SVC(kernel=&#x27;linear&#x27;))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-20" type="checkbox" ><label for="sk-estimator-id-20" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-21" type="checkbox" ><label for="sk-estimator-id-21" class="sk-toggleable__label sk-toggleable__label-arrow">SVC</label><div class="sk-toggleable__content"><pre>SVC(kernel=&#x27;linear&#x27;)</pre></div></div></div></div></div></div></div>
+
+
+
+
+```python
+pipeline_SVC.score(X_test, y_test)
+```
+
+
+
+
+    0.9995435553526912
+
+
+
+
+```python
+# produce confusion matrix
+y_pred_SVC = pipeline_SVC.predict(X_test)
+confusion_SVC = confusion_matrix(y_test, y_pred_SVC)
+confusion_SVC 
+```
+
+
+
+
+    array([[56860,     8],
+           [   18,    76]])
+
+
+
+
+```python
+plt.imshow(confusion_SVC, cmap='Reds')
+# Add colorbar
+cbar = plt.colorbar()
+# Set labels and title
+plt.xlabel("Predicted label")
+plt.ylabel("True label")
+plt.title("Confusion Matrix for Support Vector Machine Classification")
+# Add numeric labels to the plot
+for i in range(confusion_SVC.shape[0]):
+    for j in range(confusion_SVC.shape[1]):
+        plt.text(j, i, confusion_SVC[i, j], ha="center", va="center", color="k")
+
+# Show the plot
+plt.show()
+```
+
+
+    
+![png](output_54_0.png)
+    
+
+
+
+```python
+# The support vector machine algorithm actually had the lowest Type II errors so it would generally be preferable
+```
   
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
