@@ -66,7 +66,7 @@ The datasest was made up of 284,807 rows of data with 31 columns. These data wer
 ## Classification Models Explored  
 ## Table of Contents
 
-- [Logistic Regression Model](## Logistic Regression model)
+- [Logistic Regression Model](#section-1)
 - [Section 2](#section-2)
 - [Section 3](#section-3)
 
@@ -498,7 +498,7 @@ y_train.shape
 
 
 
-## Logistic Regression model
+## Logistic Regression model {#section-1}
 
 ```python
 pipeline_logistic = Pipeline([
