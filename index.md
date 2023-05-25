@@ -41,7 +41,10 @@ The confusion matrix is a valuable tool for evaluating the performance of classi
   
  **Model Accuracy**
   
-  <div align="center"> Accuracy = (TN+TP)---N
+ $$
+	x\text{Accuracy} = \frac{TN+TP}{N}
+				$$
+
     where N is the sample size 
   
 #### [Internal Blog Post Project](/bank)
