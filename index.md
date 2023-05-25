@@ -64,6 +64,11 @@ The datasest was made up of 284,807 rows of data with 31 columns. These data wer
 
  
 ## Classification Models Explored  
+## Table of Contents
+
+- [Logistic Regression Model](## Logistic Regression model)
+- [Section 2](#section-2)
+- [Section 3](#section-3)
 
 1. Logistic Regression Model
 2. Decision Tree Model
