@@ -48,10 +48,20 @@ $$\text{Accuracy} = \frac{TN+TP}{N}$$
 **Model Precision**
 $$ \text{Precision} =\frac{TN}{TN+ FP}$$
 The precision of the model is also known as the positive predictive value of the model. It represents the proportion of positive values that were correctly predicted. 
-  
-## Classification Explored  
 
-# Logistic Regression Model
+## The Data
+The datasest was made up of 284,807 rows of data with 31 columns. These data were credit card transactions, and the column names were labeled as V1, V2, \ldots, V28, amount and class. The class column is a represents whether or not the purchase was fraudulent--1 for fraudulent, 0 for non-fraudulent.
+
+
+ 
+## Classification Models Explored  
+
+### Logistic Regression Model
+### Decision Tree Model
+### Random Forest Model
+I also applied PCA to see if
+
+
   
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
