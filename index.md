@@ -66,9 +66,13 @@ The datasest was made up of 284,807 rows of data with 31 columns. These data wer
 ## Classification Models Explored  
 ## Table of Contents
 
-- [Logistic Regression Model](#section-1)
-- [Section 2](#section-2)
-- [Section 3](#section-3)
+- [Logistic Regression Model](#lg)
+- [Decision Tree Model](#dt)
+- [Random Forest Model](#rf)
+- [Random Forest Model with PCA](#sectionrf_pca)
+- [SVM Model](#svm)
+
+
 
 1. Logistic Regression Model
 2. Decision Tree Model
@@ -498,7 +502,7 @@ y_train.shape
 
 
 
-## Logistic Regression model {#section-1}
+## Logistic Regression model {#lg}
 
 ```python
 pipeline_logistic = Pipeline([
@@ -603,7 +607,7 @@ plt.show()
     
 
 
-## Random Forest Classification Model
+## Random Forest Classification Model  {#rf}
 
 
 ```python
@@ -771,7 +775,7 @@ plt.show()
     
 
 
-## Run PCA to see if the model improves
+## Random Forest with PCA to see if the model improves {#rf_pca}
 
 
 ```python
@@ -905,7 +909,7 @@ plt.show()
     
 
 
-## Use SVM to classify
+## Use SVM to classify  {#svm}
 
 
 ```python
