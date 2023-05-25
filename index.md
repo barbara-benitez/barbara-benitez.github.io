@@ -62,21 +62,7 @@ The datasest was made up of 284,807 rows of data with 31 columns. These data wer
 I also applied PCA to see if
 
 ## The process
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.decomposition import PCA
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-from sklearn.svm import SVC
+
   
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
