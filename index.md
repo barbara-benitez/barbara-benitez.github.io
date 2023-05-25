@@ -1,17 +1,18 @@
 # Portfolio
 
----
 
 ### Learn About My Projects
 
-### Credit Card Fraud Detection
+### Credit Card Fraud Detection Project
 
-<img src="images/7054834.jpg?raw=true" width="400" height="300" alt="My Image">
-image by Freepik
+<img src="images/7054834.jpg?raw=true" width="500" height="400" alt="My Image">
+<span style="font-size: small; text-align: right;">image by Freepik.</span>
 
-Fraud is a costly part of the credit card industry. In fact, in 2022, the Nilson Report, a major publication which provides data for the banking industry, forecaset that the U.S. should expect a total loss of  $165.1 billion over the next 10 years due to fraudulent charges.
 
-Bank ABC wants to improve its ability to recognize if a transaction is fraudulent. As a data scientist, I was tasked with finding a trackable
+
+Fraud is a costly part of the credit card industry. In fact, in 2022, the Nilson Report, a major publication which provides data for the banking industry, forecast that the U.S. should expect a total loss of  $165.1 billion over the next 10 years due to fraudulent charges.
+
+Bank ABC wants to improve its ability to recognize if a transaction is fraudulent. As a data scientist, I am tasked with finding a trackable
 approach to improving the current process in place. 
 
 My goal is to find a robust algorithm that can identify suspicious transactions and minimize expense to the company. 
@@ -30,7 +31,7 @@ This problem will be approached using several supervised learning algorithms. Be
 | Actual Positive | False Negative (FN) | True Positive (TP)  |
 
   
-  In a confusion matrix, the predicted values are listed in the columns, and the actual values are listed in the rows. The four main components of a confusion matrix are:
+ In a confusion matrix, the predicted values are listed in the columns, and the actual values are listed in the rows. The four main components of a confusion matrix are:
 
 -True Negative (TN): The number of correctly predicted negative instances.\
 -False Positive (FP): The number of incorrectly predicted positive instances.\
@@ -49,6 +50,13 @@ $$\text{Accuracy} = \frac{TN+TP}{N}$$
 $$ \text{Precision} =\frac{TN}{TN+ FP}$$
 The precision of the model is also known as the positive predictive value of the model. It represents the proportion of positive values that were correctly predicted. 
 
+**Type II errors**
+$$ \text{Prob of Type II error} =\frac{FN}{FN+ TP}$$
+A type II error is an error where the model incorrectly predicts a false negative. It represents the proportion of negative values that were incorrectly predicted.
+
+This type of error is costly as it results in inaction when there should have been a response.
+
+
 ## The Data
 The datasest was made up of 284,807 rows of data with 31 columns. These data were credit card transactions, and the column names were labeled as V1, V2, \ldots, V28, amount and class. The class column is a represents whether or not the purchase was fraudulent--1 for fraudulent, 0 for non-fraudulent.
 
@@ -56,13 +64,13 @@ The datasest was made up of 284,807 rows of data with 31 columns. These data wer
  
 ## Classification Models Explored  
 
-### [Logistic Regression Model]{#lg_model}
-### Decision Tree Model
-### Random Forest Model
-### Random Forest Model with PCA
-### SVM Model
+## Logistic Regression Model
+## Decision Tree Model
+## Random Forest Model
+## Random Forest Model with PCA
+## SVM Model
 
-## The process
+### The process
 ## Loaded the libraries needed to classify the transactions.
 
 
