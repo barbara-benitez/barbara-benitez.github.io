@@ -22,9 +22,7 @@ This problem will be approached using several supervised learning algorithms. Be
 
 ### Metrics Used for Evaluation
 
-<div align="center"> Model Accuracy
-
-<div align="center"> Confusion Matrix 
+<div align="center"> **Confusion Matrix **
   
 |                 | Predicted Negative | Predicted Positive   |
 |-----------------|--------------------|----------------------|
@@ -41,7 +39,10 @@ This problem will be approached using several supervised learning algorithms. Be
   
 The confusion matrix is a valuable tool for evaluating the performance of classification models. It provides a clear representation of the relationship between predicted and actual values, enabling the calculation of various metrics such as accuracy, precision, recall, and F1 score.
   
+ **Model Accuracy**
   
+  <div align="center"> Accuracy = ( TN + TP ) / N
+    where N is the sample size 
   
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
