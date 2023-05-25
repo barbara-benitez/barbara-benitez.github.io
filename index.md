@@ -14,6 +14,8 @@ Fraud is a costly part of the credit card industry. In fact, in 2022, the Nilson
 Bank ABC wants to improve its ability to recognize if a transaction is fraudulent. As a data scientist, I was tasked with finding a trackable
 approach to improving the current process in place. 
 
+My goal is to find a robust algorithm that can identify suspicious transactions and minimize expense to the company. 
+
 
 
 #### [Internal Blog Post Project](/bank)
