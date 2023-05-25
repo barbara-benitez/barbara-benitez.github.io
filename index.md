@@ -35,14 +35,23 @@ This problem will be approached using several supervised learning algorithms. Be
 -True Negative (TN): The number of correctly predicted negative instances.\
 -False Positive (FP): The number of incorrectly predicted positive instances.\
 -False Negative (FN): The number of incorrectly predicted negative instances.\
--True Positive (TP): The number of correctly predicted positive instances.\
+-True Positive (TP): The number of correctly predicted positive instances.
+  
   
 The confusion matrix is a valuable tool for evaluating the performance of classification models. It provides a clear representation of the relationship between predicted and actual values, enabling the calculation of various metrics such as accuracy, precision, recall, and F1 score.
   
- **Model Accuracy**
+**Model Accuracy**
   
- $$\text{Accuracy} = \frac{TN+TP}{N}$$
+$$\text{Accuracy} = \frac{TN+TP}{N}$$
     where $N$ is the sample size 
+  
+**Model Precision**
+$$ \text{Precision} =\frac{TN}{TN+ FP}$$
+The precision of the model is also known as the positive predictive value of the model. It represents the proportion of positive values that were correctly predicted. 
+  
+## Classification Explored  
+
+# Logistic Regression Model
   
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
