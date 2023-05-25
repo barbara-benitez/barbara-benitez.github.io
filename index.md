@@ -56,7 +56,7 @@ The datasest was made up of 284,807 rows of data with 31 columns. These data wer
  
 ## Classification Models Explored  
 
-### Logistic Regression Model
+### [Logistic Regression Model]{#lg_model}
 ### Decision Tree Model
 ### Random Forest Model
 ### Random Forest Model with PCA
@@ -486,7 +486,7 @@ y_train.shape
 
 
 
-# Logistic Regression model
+# [Logistic Regression model]{#lg_model}
 
 ```python
 pipeline_logistic = Pipeline([
