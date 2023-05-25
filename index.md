@@ -3,11 +3,10 @@
 
 ### Learn About My Projects
 
-### Credit Card Fraud Detection Project
+### Credit Card Fraud Detection Project: Do banks want to save some money?
 
 <img src="images/7054834.jpg?raw=true" width="500" height="400" alt="My Image">
-<span style="font-size: small; text-align: right;">image by Freepik.</span>
-
+<span style="font-size: small; text-align: right;">image by Freepik</span> 
 
 
 Fraud is a costly part of the credit card industry. In fact, in 2022, the Nilson Report, a major publication which provides data for the banking industry, forecast that the U.S. should expect a total loss of  $165.1 billion over the next 10 years due to fraudulent charges.
@@ -23,7 +22,9 @@ This problem will be approached using several supervised learning algorithms. Be
 
 ### Metrics Used for Evaluation
 
-<center> **Confusion Matrix ** </center>
+<center> Confusion Matrix </center>
+
+The confusion matrix is a valuable tool for evaluating the performance of classification models. It provides a clear representation of the relationship between predicted and actual values, enabling the calculation of various metrics such as accuracy, precision, recall, and F1 score.
   
 |                 | Predicted Negative | Predicted Positive   |
 |-----------------|--------------------|----------------------|
@@ -38,8 +39,7 @@ This problem will be approached using several supervised learning algorithms. Be
 -False Negative (FN): The number of incorrectly predicted negative instances.\
 -True Positive (TP): The number of correctly predicted positive instances.
   
-  
-The confusion matrix is a valuable tool for evaluating the performance of classification models. It provides a clear representation of the relationship between predicted and actual values, enabling the calculation of various metrics such as accuracy, precision, recall, and F1 score.
+ 
   
 **Model Accuracy**
   
@@ -51,24 +51,25 @@ $$ \text{Precision} =\frac{TN}{TN+ FP}$$
 The precision of the model is also known as the positive predictive value of the model. It represents the proportion of positive values that were correctly predicted. 
 
 **Type II errors**
-$$ \text{Prob of Type II error} =\frac{FN}{FN+ TP}$$
+$$ \text{Probability of making a Type II error} =\frac{FN}{FN+ TP}$$
+ 
 A type II error is an error where the model incorrectly predicts a false negative. It represents the proportion of negative values that were incorrectly predicted.
 
 This type of error is costly as it results in inaction when there should have been a response.
 
 
 ## The Data
-The datasest was made up of 284,807 rows of data with 31 columns. These data were credit card transactions, and the column names were labeled as V1, V2, \ldots, V28, amount and class. The class column is a represents whether or not the purchase was fraudulent--1 for fraudulent, 0 for non-fraudulent.
+The datasest was made up of 284,807 rows of data with 31 columns. These data were credit card transactions, and the column names were labeled as V1, V2, $\ldots$, V28, amount and class. The class column is a represents whether or not the purchase was fraudulent--1 for fraudulent, 0 for non-fraudulent.
 
 
  
 ## Classification Models Explored  
 
-## Logistic Regression Model
-## Decision Tree Model
-## Random Forest Model
-## Random Forest Model with PCA
-## SVM Model
+1. Logistic Regression Model
+2. Decision Tree Model
+3. Random Forest Model
+4. Random Forest Model with PCA
+5. SVM Model
 
 ### The process
 ## Loaded the libraries needed to classify the transactions.
@@ -115,8 +116,6 @@ df_unprocessed = df.copy()
 ```python
 df.shape
 ```
-
-
 
 
     (284807, 31)
@@ -494,7 +493,7 @@ y_train.shape
 
 
 
-# [Logistic Regression model]{#lg_model}
+## Logistic Regression model
 
 ```python
 pipeline_logistic = Pipeline([
