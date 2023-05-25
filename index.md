@@ -16,7 +16,9 @@ approach to improving the current process in place.
 
 My goal is to find a robust algorithm that can identify suspicious transactions and minimize expense to the company. 
 
+### Solving the problem
 
+This problem will be approached using several supervised learning algorithms. Each will be summarized.
 
 #### [Internal Blog Post Project](/bank)
 What happens if I add info here?
