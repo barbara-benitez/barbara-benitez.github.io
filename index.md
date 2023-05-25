@@ -25,10 +25,11 @@ This problem will be approached using several supervised learning algorithms. Be
 <div align="center"> Model Accuracy
 
 <div align="center"> Confusion Matrix 
-  |           | Predicted Negative | Predicted Positive |
-|-----------|--------------------|--------------------|
-| Actual Negative | True Negative (TN) | False Positive (FP) |
-| Actual Positive | False Negative (FN) | True Positive (TP) |
+  
+|                 | Predicted Negative | Predicted Positive   |
+|-----------------|--------------------|----------------------|
+| Actual Negative | True Negative (TN)  | False Positive (FP) |
+| Actual Positive | False Negative (FN) | True Positive (TP)  |
 
   
   In a confusion matrix, the predicted values are listed in the columns, and the actual values are listed in the rows. The four main components of a confusion matrix are:
