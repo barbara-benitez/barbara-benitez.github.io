@@ -2,8 +2,9 @@
 
 
 ### Learn About My Projects
+This a showcase of some of the interesting projects I have worked on using machine learning.
 
-### Credit Card Fraud Detection Project: Do banks want to save some money?
+### Credit Card Fraud Detection: Do banks want to save some money?
 
 <img src="images/7054834.jpg?raw=true" width="500" height="400" alt="My Image">
 <span style="font-size: small; text-align: right;">image by Freepik</span> 
