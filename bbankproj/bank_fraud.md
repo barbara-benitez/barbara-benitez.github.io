@@ -1,8 +1,10 @@
-### Credit Card Fraud Detection: Do banks want to save some money?
 
-<img src="images/banks_fig.jpg?raw=true" width="500" height="400" alt="My Image">
+
+<p align="center"><strong> Credit Card Fraud Detection: Do banks want to save some money?</strong></p>
+<p align="center">
+<img src="/bbankproj/hackerbank.jpg?raw=true" width="500" height="400" alt="My Image">
 <span style="font-size: small; text-align: right;">
-
+</p>
 
 Fraud is a costly part of the credit card industry. In fact, in 2022, the Nilson Report, a major publication which provides data for the banking industry, forecast that the U.S. should expect a total loss of  $165.1 billion over the next 10 years due to fraudulent charges.
 
@@ -42,10 +44,13 @@ $$\text{Accuracy} = \frac{TN+TP}{N}$$
     where $N$ is the sample size 
 
 **Model Precision**
-$$ \text{Precision} =\frac{TN}{TN+ FP}$$
+ 
+$$\text{Precision} = \frac{TN}{TN+FP}$$
+
 The precision of the model is also known as the positive predictive value of the model. It represents the proportion of positive values that were correctly predicted. 
 
 **Type II errors**
+ 
 $$ \text{Probability of making a Type II error} =\frac{FN}{FN+ TP}$$
 
 A type II error is an error where the model incorrectly predicts a false negative. It represents the proportion of negative values that were incorrectly predicted.
