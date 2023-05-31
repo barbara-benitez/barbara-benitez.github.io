@@ -7,7 +7,7 @@ This a showcase of some of the interesting projects I have worked on using machi
 ### Credit Card Fraud Detection: Do banks want to save some money?
 
 <img src="images/banks_fig.jpg?raw=true" width="500" height="400" alt="My Image">
-<span style="font-size: small; text-align: right;">image by Freepik</span> 
+<span style="font-size: small; text-align: right;">
 
 
 Fraud is a costly part of the credit card industry. In fact, in 2022, the Nilson Report, a major publication which provides data for the banking industry, forecast that the U.S. should expect a total loss of  $165.1 billion over the next 10 years due to fraudulent charges.
