@@ -688,7 +688,7 @@ plt.show()
     
 
 
-### Clearly, these data exhibit seasonality. These models will not be build to incorporate these fluctuations explicitly. 
+### Clearly, these data exhibit seasonality. These models will not be built to incorporate these fluctuations explicitly. 
 
 ## Look at some joint plots with the electricity price 
 
