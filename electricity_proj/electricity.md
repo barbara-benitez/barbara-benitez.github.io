@@ -11,7 +11,7 @@ Upmath extremely simplifies this task by using Markdown and LaTeX. It converts t
 
 1. [The Problem and strategy](#problem)
 2. [Exploratory data analysis](#Exploratory-Data-Analysis)
-3. Preprocessing the data(#Preprocessing-the-Data)
+3. Preprocessing the data(#Preprocess-the-Data)
 4. Machine learning models
 5. Final conclusion
  
