@@ -11,9 +11,9 @@ Upmath extremely simplifies this task by using Markdown and LaTeX. It converts t
 
 1. [The Problem and strategy](#problem)
 2. [Exploratory data analysis](#Exploratory-Data-Analysis)
-3. Preprocessing the data(#Preprocess-the-Data)
-4. Machine learning models
-5. Final conclusion
+3. [Preprocessing the data](#Preprocess-the-Data)
+4. [Machine learning models](#Machine-Learning-Models)
+6. Final conclusion
  
  
  
@@ -951,11 +951,14 @@ df_preprocessed = df.copy
 ```
 
 # Preprocess the Data
-### The preprocessing will comprise the following steps:
-a. Checking for missing/null data values
-b. Encoding categorical feature using OneHotEncoder
-c. Dropping unnecessary columns: datetime and holiday
-d. Set up the training and test data sets
+## The preprocessing will comprise the following steps:
+<ol type="a">
+  <li>Checking for missing/null data values</li>
+  <li>Encoding categorical feature using OneHotEncoder</li>
+  <li>Dropping unnecessary columns: datetime and holiday</li>
+ <li>Setting up the training and test data sets</li>
+</ol>
+ 
 
 ### Check for missing/null data values
 
@@ -2041,6 +2044,15 @@ y.shape
 ```python
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .1 , random_state = 1)
 ```
+
+# Machine Learning Models
+## Four models will be explored. 
+<ol type="a">
+ <li>Linear Regression</li>
+   <li>Linear Regression with VIF application to eliminate multicollinearity</li>
+  <li>Support Vector Machines</li>
+  <li>Gradient Boost Regression</li>
+</ol>
 
 ## Set up the Pipelines
 
