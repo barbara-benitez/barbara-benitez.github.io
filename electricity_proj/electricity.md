@@ -951,6 +951,11 @@ df_preprocessed = df.copy
 ```
 
 # Preprocess the Data
+### The preprocessing will comprise the following steps:
+a. Checking for missing/null data values
+b. Encoding categorical feature using OneHotEncoder
+c. Dropping unnecessary columns: datetime and holiday
+d. Set up the training and test data sets
 
 ### Check for missing/null data values
 
