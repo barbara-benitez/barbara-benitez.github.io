@@ -950,7 +950,7 @@ df.describe()
 df_preprocessed = df.copy
 ```
 
-# 3.  Preprocess the data
+# Preprocess the Data
 
 ### Check for missing/null data values
 
