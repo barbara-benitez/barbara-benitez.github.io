@@ -13,7 +13,7 @@ Upmath extremely simplifies this task by using Markdown and LaTeX. It converts t
 2. [Exploratory data analysis](#Exploratory-Data-Analysis)
 3. [Preprocessing the data](#Preprocess-the-Data)
 4. [Machine learning models](#Machine-Learning-Models)
-6. Final conclusion
+6. [Final conclusion](#Final-Conclusion)
  
  
  
@@ -2350,7 +2350,7 @@ X2.head()
 
 
 
-
+<html>
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -2432,7 +2432,7 @@ X2.head()
   </tbody>
 </table>
 </div>
-
+</html>
 
 
 
@@ -2526,3 +2526,7 @@ from sklearn.metrics import r2_score
 r2 = r2_score(y_test, y_pred)
 print("R-squared Score:", r2)
 ```
+
+
+# Final Conclusion
+
