@@ -2049,3 +2049,483 @@ pipeline_linreg.fit(X_train, y_train)
 
  
  # Preprocessing the Data
+
+
+```python
+pipeline_linreg.score(X_test, y_test)
+```
+
+
+
+
+    1.0
+
+
+
+## The linear regression model accuracy score is 100%. This is suspicous. 
+## This brings up a concern of overfitting and possible multicollinearity.
+
+
+```python
+
+selected_columns = ['HolidayFlag', 'DayOfWeek', 'WeekOfYear', 'PeriodOfDay', 'ForecastWindProduction',
+                    'SystemLoadEA', 'SMPEA', 'ORKTemperature', 'ORKWindspeed', 'CO2Intensity',
+                   'ActualWindProduction','SystemLoadEP2','SMPEP2']
+df_clean_selected = df_clean[selected_columns]
+correlations = df_clean_selected.corr(method='pearson')
+plt.figure(figsize=(16, 12))
+sns.heatmap(correlations, cmap="coolwarm", annot=True)
+plt.show()
+```
+
+
+    
+![png](output_73_0.png)
+    
+
+
+## Remove any features having a correlation above 0.7
+
+
+```python
+# Set the threshold for correlation values
+threshold = 0.7
+
+# Find the indices of columns with correlation values above the threshold
+above_threshold = np.where((correlations > threshold) & (correlations < 1))
+
+# Get unique column indices
+column_indices = np.unique(above_threshold[1])
+
+# Select the columns from the original DataFrame based on the column indices
+selected_columns = df_clean_selected.columns[column_indices]
+selected_columns
+```
+
+
+
+
+    Index(['ForecastWindProduction', 'SystemLoadEA', 'ORKWindspeed',
+           'ActualWindProduction', 'SystemLoadEP2'],
+          dtype='object')
+
+
+
+
+```python
+df_clean_selected_noncoll = df_clean_selected.drop(['ForecastWindProduction',
+        'SystemLoadEP2'], axis = 1)
+```
+
+## Look at VIF (variance inflation factor) to rule out multicollinearity
+
+
+```python
+def calc_vif(X):
+
+    # Calculating VIF
+    vif = pd.DataFrame()
+    vif["variables"] = X.columns
+    vif["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
+
+    return(vif)
+
+X = df_clean_selected_noncoll.iloc[:,:-1]
+calc_vif(X)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>variables</th>
+      <th>VIF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>HolidayFlag</td>
+      <td>1.079787</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>DayOfWeek</td>
+      <td>3.332044</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>WeekOfYear</td>
+      <td>4.368006</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>PeriodOfDay</td>
+      <td>6.772795</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>SystemLoadEA</td>
+      <td>43.723622</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>SMPEA</td>
+      <td>6.972637</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ORKTemperature</td>
+      <td>5.976689</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ORKWindspeed</td>
+      <td>11.295421</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>CO2Intensity</td>
+      <td>20.811278</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>ActualWindProduction</td>
+      <td>7.983782</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+# Drop features with high VIF (greater than 10)
+df_no_coll2 = df_clean_selected_noncoll.drop(["ORKWindspeed","SystemLoadEA", "CO2Intensity"], axis = 1)
+```
+
+
+```python
+df_no_coll2.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HolidayFlag</th>
+      <th>DayOfWeek</th>
+      <th>WeekOfYear</th>
+      <th>PeriodOfDay</th>
+      <th>SMPEA</th>
+      <th>ORKTemperature</th>
+      <th>ActualWindProduction</th>
+      <th>SMPEP2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>0</td>
+      <td>49.26</td>
+      <td>6.0</td>
+      <td>356.0</td>
+      <td>54.32</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>1</td>
+      <td>49.26</td>
+      <td>6.0</td>
+      <td>317.0</td>
+      <td>54.23</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>2</td>
+      <td>49.10</td>
+      <td>5.0</td>
+      <td>311.0</td>
+      <td>54.23</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>3</td>
+      <td>48.04</td>
+      <td>6.0</td>
+      <td>313.0</td>
+      <td>53.47</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>4</td>
+      <td>33.75</td>
+      <td>6.0</td>
+      <td>346.0</td>
+      <td>39.87</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+correlations = df_no_collinearity.corr(method='pearson')
+plt.figure(figsize=(16, 12))
+sns.heatmap(correlations, cmap="coolwarm", annot=True)
+plt.show()
+```
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    Cell In[46], line 1
+    ----> 1 correlations = df_no_collinearity.corr(method='pearson')
+          2 plt.figure(figsize=(16, 12))
+          3 sns.heatmap(correlations, cmap="coolwarm", annot=True)
+
+
+    NameError: name 'df_no_collinearity' is not defined
+
+
+## Rerun the linear regression model to see if the result is more reasonable
+
+
+```python
+# Set up a new train, test data split with fewer features
+X2 = df_no_coll2.iloc[:, :-1]
+X2.head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HolidayFlag</th>
+      <th>DayOfWeek</th>
+      <th>WeekOfYear</th>
+      <th>PeriodOfDay</th>
+      <th>SMPEA</th>
+      <th>ORKTemperature</th>
+      <th>ActualWindProduction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>0</td>
+      <td>49.26</td>
+      <td>6.0</td>
+      <td>356.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>1</td>
+      <td>49.26</td>
+      <td>6.0</td>
+      <td>317.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>2</td>
+      <td>49.10</td>
+      <td>5.0</td>
+      <td>311.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>3</td>
+      <td>48.04</td>
+      <td>6.0</td>
+      <td>313.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>44</td>
+      <td>4</td>
+      <td>33.75</td>
+      <td>6.0</td>
+      <td>346.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+y2 = df_no_coll2.iloc[:, -1]
+```
+
+
+```python
+y2.head()
+```
+
+
+```python
+X2_train, X2_test, y2_train, y2_test = train_test_split(X2, y2)
+```
+
+
+```python
+# Rerun the pipeline on the new training data
+pipeline_linreg.fit(X2_train, y2_train)
+```
+
+## Linear Regression does not yield a reasonable accuracy-- need a better model
+
+
+```python
+pipeline_linreg.score(X2_test, y2_test)
+```
+
+## Model using SVM
+
+
+```python
+from sklearn.svm import SVC
+model_svc = SVC(kernel = 'linear', C =1.0)
+model_svc.fit(X_train, y_train)
+```
+
+
+```python
+y_pred = model_svc.predict(X_test)
+```
+
+
+```python
+from sklearn.metrics import classification_report
+print(classification_report(y_test, y_pred))
+```
+
+
+```python
+from sklearn.metrics import accuracy_score
+print(accuracy_score(y_test, y_pred))
+```
+
+## Model using Gradient Boost Regression
+
+
+```python
+from sklearn.ensemble import GradientBoostingRegressor
+
+# Initialize the Gradient Boosting regressor
+gb_regressor = GradientBoostingRegressor()
+```
+
+
+```python
+# fit the model on the training data
+gb_regressor.fit(X_train, y_train)
+```
+
+
+```python
+# Predict on the test data
+y_pred = gb_regressor.predict(X_test)
+```
+
+
+```python
+# Evaluate the gradient boost regressor model
+from sklearn.metrics import mean_squared_error
+mse = mean_squared_error(y_test, y_pred)
+print("Mean Squared Error:", mse)
+```
+
+
+```python
+# compute the R-squared score of the gradient boost regressor model
+from sklearn.metrics import r2_score
+r2 = r2_score(y_test, y_pred)
+print("R-squared Score:", r2)
+```
