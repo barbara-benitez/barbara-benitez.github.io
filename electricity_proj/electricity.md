@@ -1179,8 +1179,9 @@ cat_features.head()
 
 
 
-<div>
-<style scoped>
+<html>
+<head>
+ <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
@@ -1193,6 +1194,8 @@ cat_features.head()
         text-align: right;
     }
 </style>
+ </head>
+<body>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1307,7 +1310,8 @@ cat_features.head()
     </tr>
   </tbody>
 </table>
-</div>
+</body>
+ </html>
 
 
 
