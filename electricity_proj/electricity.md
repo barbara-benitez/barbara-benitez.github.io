@@ -413,12 +413,6 @@ df.describe()
 
 ## Determine the data types of the data; several have datatype  of object but are actually numeric, categorical, or datetime. These need to be converted to float, category and datetime, respectively.
 
-
-```python
-
-```
-
-
 ```python
 df.select_dtypes(include=['object']).dtypes
 ```
@@ -697,22 +691,7 @@ df.describe()
 ```
 
 
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1164,20 +1143,7 @@ cat_features.head()
 
 
 
-<html>
- <style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1292,7 +1258,7 @@ cat_features.head()
     </tr>
   </tbody>
 </table>
- </html>
+
 
 
 
@@ -1312,20 +1278,6 @@ df_new
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1621,11 +1573,10 @@ df_new
   </tbody>
 </table>
 <p>38014 rows × 33 columns</p>
-</div>
 
 
 
-## Drop irrelevant columns: datetime and holiday data
+## Drop columns that are irrelevant to the modeling process: datetime and holiday data
 
 
 ```python
@@ -1643,23 +1594,6 @@ df_clean[df_clean.isnull().any(axis=1)]
 df_clean
 ```
 
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1955,7 +1889,7 @@ df_clean
   </tbody>
 </table>
 <p>37682 rows × 31 columns</p>
-</div>
+
 
 
 
@@ -2115,23 +2049,7 @@ calc_vif(X)
 
 
 
-<html>
-<head>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
- </head>
- <body>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2193,8 +2111,7 @@ calc_vif(X)
     </tr>
   </tbody>
 </table>
-</body>
- </html?
+
 
 
 
@@ -2212,20 +2129,7 @@ df_no_coll2.head()
 
 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2298,7 +2202,7 @@ df_no_coll2.head()
     </tr>
   </tbody>
 </table>
-</div>
+
 
 
 
@@ -2310,18 +2214,6 @@ sns.heatmap(correlations, cmap="coolwarm", annot=True)
 plt.show()
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    Cell In[46], line 1
-    ----> 1 correlations = df_no_collinearity.corr(method='pearson')
-          2 plt.figure(figsize=(16, 12))
-          3 sns.heatmap(correlations, cmap="coolwarm", annot=True)
-
-
-    NameError: name 'df_no_collinearity' is not defined
 
 
 ## Rerun the linear regression model to see if the result is more reasonable
