@@ -26,9 +26,12 @@ factors related to the price at each instance.
 I am free to select any modeling algorithm to make the forecasts, but I need to justify the final model that I select to make predictions. 
 
 In the exploration, I explored four supervised machine learning algorithms: linear regression, linear regression with VIF applied, support vector machines, and 
-gradient boost regression. Support vector machines and gradient boost gave similarly precise models. Ultimately, I recommend the gradient 
-booster regression model over the support vector machines as it is not as demanding of computational resources.
- 
+gradient boost regression. Support vector machines provided the most accurate model, but the gradient boost regression model also provided another precise model. Ultimately, I recommend the SVM model over the gradient boost model provided that the use of computational resources is not an issue.
+
+As part of the modeling process, I explored multicollinearity in the model since the linear regression model yielded an R-squared
+of 1. Ultimately, I removed several variables that exhbited high correlation as identified initially using a correlation matrix and then applying VIF. 
+
+
  ## Glossary of terms used 
  
 - DateTime: Date and time of the record
