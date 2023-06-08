@@ -4,11 +4,8 @@
 # Electricity Price Prediction Project
 ### Can we predict the price of electricity given just a few indicators?
 
-Upmath extremely simplifies this task by using Markdown and LaTeX. It converts the Markdown syntax extended with LaTeX equations support into HTML code you can publish anywhere on the web.
 
-
- 
-
+# Table of Contents
 1. [The Problem and strategy](#problem)
 2. [Exploratory data analysis](#Exploratory-Data-Analysis)
 3. [Preprocessing the data](#Preprocess-the-Data)
@@ -313,19 +310,7 @@ df.describe()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
