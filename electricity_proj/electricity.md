@@ -1983,7 +1983,7 @@ print("Linear Regression R-square:", r2_lin_reg)
 
 
 
-### The linear regression r-squared score is 100%. This is suspicous. 
+### The linear regression r-squared score is 100%. This is suspicous. (It makes me itch.)
 ### This brings up a concern of overfitting and possible multicollinearity.
 
 
