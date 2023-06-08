@@ -26,7 +26,7 @@ factors related to the price at each instance.
 I am free to select any modeling algorithm to make the forecasts, but I need to justify the final model that I select to make predictions. 
 
 In the exploration, I explored four supervised machine learning algorithms: linear regression, linear regression with VIF applied, support vector machines, and 
-gradient boost regression. Support vector machines provided the most accurate model, but the gradient boost regression model also provided another precise model. Ultimately, I recommend the SVM model over the gradient boost model provided that the use of computational resources is not an issue.
+gradient boost regression. Support vector machines provided the most accurate model, but the gradient boost regression model also provided another precise model. Ultimately, I recommend the SVM model over the gradient boost model provided that the use of computational resources and time are not an issue.
 
 As part of the modeling process, I explored multicollinearity in the model since the linear regression model yielded an R-squared
 of 1. Ultimately, I removed several variables that exhbited high correlation as identified initially using a correlation matrix and then applying VIF. 
@@ -2446,3 +2446,6 @@ print("Gradient Boost R-squared Score:", r2_gb)
     Gradient Boost R-squared Score: 0.922810682395347
 
 # Final Conclusion
+
+Either the SVM model or gradient boost model gives a reasonable prediction of the price of electricity. 
+
