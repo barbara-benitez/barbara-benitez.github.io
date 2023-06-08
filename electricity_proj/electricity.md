@@ -2022,9 +2022,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .1 , rando
 
 ## Set up the Pipelines
 
-
+### Linear Regression Pipeline
 ```python
-# Linear Regression Pipeline
+
 pipeline_linreg = Pipeline([
     ('Scaler', StandardScaler()),
     ("Linear Regression", LinearRegression())
@@ -2045,12 +2045,7 @@ print(pipeline_linreg)
 pipeline_linreg.fit(X_train, y_train)
 ```
 
-
-
- 
- # Preprocessing the Data
-
-
+### Compute R-square for linear regression model.
 ```python
 pipeline_linreg.score(X_test, y_test)
 ```
@@ -2062,10 +2057,11 @@ pipeline_linreg.score(X_test, y_test)
 
 
 
-## The linear regression model accuracy score is 100%. This is suspicous. 
-## This brings up a concern of overfitting and possible multicollinearity.
+### The linear regression model accuracy score is 100%. This is suspicous. 
+### This brings up a concern of overfitting and possible multicollinearity.
 
 
+## Look at the correlation matrix for the features
 ```python
 
 selected_columns = ['HolidayFlag', 'DayOfWeek', 'WeekOfYear', 'PeriodOfDay', 'ForecastWindProduction',
@@ -2083,9 +2079,7 @@ plt.show()
 ![png](output_73_0.png)
     
 
-
-## Remove any features having a correlation above 0.7
-
+### In order to eliminate features which are strongly correlated, we will remove any features having a correlation above 0.7
 
 ```python
 # Set the threshold for correlation values
@@ -2117,7 +2111,7 @@ df_clean_selected_noncoll = df_clean_selected.drop(['ForecastWindProduction',
         'SystemLoadEP2'], axis = 1)
 ```
 
-## Look at VIF (variance inflation factor) to rule out multicollinearity
+## In addition to dropping features that are highly correlated per the correlation matrix, I will look at VIF (variance inflation factor) as a second check to rule out multicollinearity
 
 
 ```python
@@ -2136,8 +2130,8 @@ calc_vif(X)
 
 
 
-
-<div>
+<html>
+<head>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -2151,6 +2145,8 @@ calc_vif(X)
         text-align: right;
     }
 </style>
+ </head>
+ <body>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2212,7 +2208,8 @@ calc_vif(X)
     </tr>
   </tbody>
 </table>
-</div>
+</body>
+ </html?
 
 
 
