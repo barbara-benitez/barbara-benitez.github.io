@@ -12,7 +12,7 @@ This project was particularly fun because the data is subjective reviews with se
 
 Table of Contents
 
-[The Problem](#Problem Statement)
+[The Problem](#Problem-Statement)
 
 This project will look at a dataset with various characteristics of wine to determine if the wine is of good quality.
 
@@ -34,9 +34,13 @@ What we are given is:
 
 
 # Problem Statement 
-You really want to know how good a wine is before it hits the market. Some wines have the advantage of name recognition and garner higher prices just for having a recognizable label, but most wines are left with the hope of dusting the palate with something memorable so that you forget the price tag. That is what a good wine maker wants to replicate. Just like a fine article of designer clothing that you just have to have. You want a wine that calls to you. Frankly, I want that wine too! (Promontory, Bond, anyone?)
+You really want to know how good a wine is before it hits the market. Some wines have the advantage of name recognition and garner higher prices just for having a recognizable label, but most wines are left with the hope of dusting the palate with something memorable so that you forget the price tag. That is what a good wine maker wants to replicate. Just like a fine article of designer clothing that you just have to have. You want a wine that calls to you. Frankly, I want that wine too! (Promontory, Bond, anyone?) It sure would be good to know this before letting the wine rest in a barrel for a few years!
 
-The second issue that too many considerations can bog down the 
+The second issue that there are a lot refinements made to wine to make it palatable. Besides how long it sits in a tank, how much citric acid to add, for instance, changes the acidity of the wine and how ``fresh" it appears to the consider. There are so many factors that can impact the wine so we really want to whittle it down to the most important elements. Boom! We need some machine learning to help us along. 
+
+My goal is to determine the most important element, and find a machine learning algorithm that can predict most closely the subjective rating of the wine consumer.
+
+
 
 ```python
 import pandas as pd
