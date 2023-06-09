@@ -1,4 +1,12 @@
-# Wine Quality Project
+# Wine Quality Prediction
+
+# Fine wine is like fine linen. It is difficult to replicate, but you know it when you have it. 
+
+I have been tasked to evaluate the perceived quality of a wine by an industrious winemaker that is aspiring to make a that is more appealing to discerning palates. The evaluation is to be  based on several known characteristics of the wine. The wine drinker then assigns a score to evaluate the quality of the wine. Scores can range from 0 to 8.
+
+
+
+
 this project will look at a dataset with various characteristics of wine to determine if the wine is of good quality
 
 
