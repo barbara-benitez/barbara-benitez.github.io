@@ -6,13 +6,31 @@ An industrious winemaker has tasked me with the evaluation of wine quality to ma
 
 
 
-This project was particularly fun because the data provided was given a subjective review with several objective measures of wine. Moreover, the evaluation of a wine's quality is highly variable even for exceptionally expensive wines. 
+This project was particularly fun because the data is subjective reviews with several objective measures of wine. (How acidic do you like your wine?) Moreover, the evaluation of a wine's quality is highly variable even for exceptionally expensive wines. I like a challenge. 
+
+
 
 Table of Contents
 
 [The Problem](#Problem Statement)
 
-this project will look at a dataset with various characteristics of wine to determine if the wine is of good quality
+This project will look at a dataset with various characteristics of wine to determine if the wine is of good quality.
+
+## Glossary of Terms
+
+What we are given is:
+- fixed acidity 
+- volatile acidity     
+- citric acid          
+- residual sugar       
+- chlorides            
+- free sulfur dioxide  
+- total sulfur dioxide
+- density           
+- pH                
+- sulphates         
+- alcohol           
+- quality 
 
 
 # Problem Statement 
