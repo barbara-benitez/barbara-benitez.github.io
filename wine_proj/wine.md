@@ -12,7 +12,13 @@ This project was particularly fun because the data is subjective reviews with se
 
 Table of Contents
 
-[The Problem](#Problem-Statement)
+1. [The Problem](#Problem-Statement)
+2. [What I Expected Versus What I Got](#What-I-Expected-Versus-What-I-Got)
+3. [Getting Started with the Data](#Getting-Started-with-the-Data)
+4. [Exploring the Data](#Exploring-the-Data)
+5. [Pre-processing the Data](#Pre-processing-the-Data)
+6. [The Models](#The-Models)
+7. [Final Thoughts](#Final-Thoughts)
 
 This project will look at a dataset with various characteristics of wine to determine if the wine is of good quality.
 
@@ -40,6 +46,19 @@ The second issue that there are a lot refinements made to wine to make it palata
 
 My goal is to determine the most important element, and find a machine learning algorithm that can predict most closely the subjective rating of the wine consumer.
 
+# What I Expected Versus What I Got
+I tried several shallow algorithms and one basic neural network in this project.  
+1.
+
+It turns out that as explorations go, I expected the models to mostly perform badly, but I also expected the neural network to perform on the high end. 
+
+
+
+# Getting Started with the Data
+
+## First, I imported some anticipated dependencies.
+### I started with Naive Bayes and the standard scaler since the data were not on a single scale. 
+### I'll add dependencies as I run each model. 
 
 
 ```python
@@ -53,136 +72,22 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 ```
 
-### Read in the csv file
-
+### I read in the csv file which was downloaded. It was originally downloaded from Kaggle. 
 
 ```python
 df = pd.read_csv("winequality-red.csv")
 ```
+### The data were about as clean as can get so we're set to start playing with the numbers and looking for trends.
 
-## EDA 
-### Look at the data; the target variable is quality
 
+# Exploring the Data
+
+
+### I looked at the head and the tail of the data. The data are comprised of 10 features and the target is variable the wine quality. 
 
 ```python
 df.head()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>fixed acidity</th>
-      <th>volatile acidity</th>
-      <th>citric acid</th>
-      <th>residual sugar</th>
-      <th>chlorides</th>
-      <th>free sulfur dioxide</th>
-      <th>total sulfur dioxide</th>
-      <th>density</th>
-      <th>pH</th>
-      <th>sulphates</th>
-      <th>alcohol</th>
-      <th>quality</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>7.4</td>
-      <td>0.70</td>
-      <td>0.00</td>
-      <td>1.9</td>
-      <td>0.076</td>
-      <td>11.0</td>
-      <td>34.0</td>
-      <td>0.9978</td>
-      <td>3.51</td>
-      <td>0.56</td>
-      <td>9.4</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>7.8</td>
-      <td>0.88</td>
-      <td>0.00</td>
-      <td>2.6</td>
-      <td>0.098</td>
-      <td>25.0</td>
-      <td>67.0</td>
-      <td>0.9968</td>
-      <td>3.20</td>
-      <td>0.68</td>
-      <td>9.8</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>7.8</td>
-      <td>0.76</td>
-      <td>0.04</td>
-      <td>2.3</td>
-      <td>0.092</td>
-      <td>15.0</td>
-      <td>54.0</td>
-      <td>0.9970</td>
-      <td>3.26</td>
-      <td>0.65</td>
-      <td>9.8</td>
-      <td>5</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>11.2</td>
-      <td>0.28</td>
-      <td>0.56</td>
-      <td>1.9</td>
-      <td>0.075</td>
-      <td>17.0</td>
-      <td>60.0</td>
-      <td>0.9980</td>
-      <td>3.16</td>
-      <td>0.58</td>
-      <td>9.8</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>7.4</td>
-      <td>0.70</td>
-      <td>0.00</td>
-      <td>1.9</td>
-      <td>0.076</td>
-      <td>11.0</td>
-      <td>34.0</td>
-      <td>0.9978</td>
-      <td>3.51</td>
-      <td>0.56</td>
-      <td>9.4</td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
 
 
 
@@ -194,19 +99,6 @@ df.tail()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -306,6 +198,10 @@ df.tail()
 </div>
 
 
+### A quick look at the data showed that
+- there were no missing values
+- all of the features were coded as float
+- the target variable, quality, was coded as integer so it will need to be converted to a categorical variable to indicate high or low quality when the data are pre-processed
 
 
 ```python
@@ -338,13 +234,11 @@ df.info()
 np.shape(df)
 ```
 
-
-
-
     (1599, 12)
 
 
-
+## I took a quick look at the descriptive statistics for the data to get a feel for the means and the spread of the data. 
+These data are on very different scales.
 
 ```python
 df.describe()
@@ -354,19 +248,7 @@ df.describe()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -537,11 +419,13 @@ df.isnull().sum()
     dtype: int64
 
 
-
+### I decided to look at the features alongside the quality rating to see if there were any obvious relationships. 
+So I ran a loop to generate 10 plots comparing each feature with quality. 
+It was clear that several variables tended to be inverse proportional to the quality whereas some had a direct relationship. If any of the other features shared some obviosu relatipship with the quality it was certainly not transparent to me at this point.
 
 ```python
 # look at some line plots with the quality rating
-# write a loop to generate the 11 plots
+# write a loop to generate the 10 plots
 cols = (len(df.columns))-1
 for col in range(0,cols) :
     
