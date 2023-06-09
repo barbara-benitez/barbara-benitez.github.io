@@ -6,9 +6,19 @@ An industrious winemaker has tasked me with the evaluation of wine quality to ma
 
 
 
+This project was particularly fun because the data provided was given a subjective review with several objective measures of wine. Moreover, the evaluation of a wine's quality is highly variable even for exceptionally expensive wines. 
+
+Table of Contents
+
+[The Problem](#Problem Statement)
 
 this project will look at a dataset with various characteristics of wine to determine if the wine is of good quality
 
+
+# Problem Statement 
+You really want to know how good a wine is before it hits the market. Some wines have the advantage of name recognition and garner higher prices just for having a recognizable label, but most wines are left with the hope of dusting the palate with something memorable so that you forget the price tag. That is what a good wine maker wants to replicate. Just like a fine article of designer clothing that you just have to have. You want a wine that calls to you. Frankly, I want that wine too! (Promontory, Bond, anyone?)
+
+The second issue that too many considerations can bog down the 
 
 ```python
 import pandas as pd
