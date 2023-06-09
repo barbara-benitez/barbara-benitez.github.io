@@ -1,8 +1,8 @@
 # Wine Quality Prediction
 
-# Fine wine is like fine linen. It is difficult to replicate, but you know it when you have it. 
+# Fine wine is like fine linen. <span style="color:blue"> It is difficult to replicate, but you know it when you have it.</span> 
 
-I have been tasked to evaluate the perceived quality of a wine by an industrious winemaker that is aspiring to make a that is more appealing to discerning palates. The evaluation is to be  based on several known characteristics of the wine. The wine drinker then assigns a score to evaluate the quality of the wine. Scores can range from 0 to 8.
+An industrious winemaker has tasked me with the evaluation of wine quality to make it more appealing to discerning palates. The evaluation is to be  based on several known characteristics of the wine. The wine drinker then assigns a score to evaluate the quality of the wine. Scores can range from 0 to 8.
 
 
 
