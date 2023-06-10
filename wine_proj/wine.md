@@ -586,7 +586,7 @@ df_clean = df.copy()
 
 # Pre-processing the Data
 - Drop the columns for fixed acidity and free sulfur dioxide
-- This will entail rescaling the data using StandardScaler
+- Rescale the data using StandardScaler
 
 
 ```python
