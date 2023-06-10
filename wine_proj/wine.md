@@ -25,18 +25,18 @@ This project will look at a dataset with various characteristics of wine to dete
 ## Glossary of Terms
 
 What we are given is:
-- fixed acidity 
-- volatile acidity     
-- citric acid          
-- residual sugar       
-- chlorides            
-- free sulfur dioxide  
-- total sulfur dioxide
-- density           
-- pH                
-- sulphates         
-- alcohol           
-- quality 
+- fixed acidity: the total concentration of non-volatile acids present in wine, such as tartaric acid, malic acid, and citric acid. It plays a role in the perceived sharpness and tartness of the wine. 
+- volatile acidity: represents the concentration of volatile acids, primarily acetic acid, in wine. Higher levels of volatile acidity can contribute to unpleasant vinegar-like aromas and flavors.     
+- citric acid: naturally occurring acid found in grapes and can also be added during winemaking. It provides freshness and can enhance the citrusy notes in wine.         
+- residual sugar: the amount of sugar that remains unfermented in the wine after fermentation. It can influence the wine's perceived sweetness and can be an intentional stylistic choice or a result of incomplete fermentation.       
+- chlorides: represents the concentration of salts, primarily sodium chloride, in wine. Higher levels of chlorides can impact the taste and mouthfeel of the wine.         
+- free sulfur dioxide: form of sulfur dioxide (SO2) that exists in a free, unbound state in wine. It acts as an antioxidant and antimicrobial agent, helping to preserve the wine and prevent spoilage.
+- total sulfur dioxide: the combined concentration of both free and bound forms of sulfur dioxide in wine. It is measured as an indicator of the wine's stability and preservation capacity.
+- density: the mass of the wine per unit volume. Density measurements can provide information about the sugar and alcohol content of the wine.           
+- pH:   measure of the acidity or alkalinity of the wine on a logarithmic scale. pH affects the wine's stability, microbial growth, and sensory attributes.  
+- sulphates: chemical compounds containing sulfur dioxide (SO2) that are added to wine as preservatives. Sulphates help prevent oxidation and microbial spoilage.         
+- alcohol:  the ethanol content in wine, which is produced during fermentation. Alcohol contributes to the wine's body, mouthfeel, and can influence its perceived warmth and intensity.          
+- quality: refers to the overall excellence and desirability of the wine. Wine quality can be subjective and is often assessed based on sensory characteristics, such as aroma, flavor, balance, complexity, and structure.
 
 
 # Problem Statement 
@@ -1404,7 +1404,26 @@ print("SVM Classifier Accuracy Score: ", accuracy_svc)
     SVM Classifier Accuracy Score:  0.6223612197028929
 
 
+# Final Thoughts
 
-```python
+So based on my exploration the model performances, I would recommend that my wine maker go with the Random Forest Algorithm in order to best evaluate the wine. Moreover, I am going to suggest based on the feature importance evaluations of both the Random Forest and XGBoost algorithms that the greatest importance be placed on
+the following factors in order:
+1. alcohol
+2. volatile acidity
+3. sulfates
+4. total sulfuric acid
+<br>
+In both models, these four factors accounted for approximately 60% of the evaluation of quality. Alcohol content was the most important factor in determining the quality of the wine. (Do not spare the alcohol, friends!)  
+<br>
+Overall, these measured factors are also greatly dependent on the scale of the winemaking operations and the technique employed in making the wine itself. That being said, I believe that this gives a starting point for improving the overal impression of the wine on the consumer and to better inform the production process.
+<br>
+Some future explorations that would be interesting to consider: 
+- exploring the types of winemaking (red versus white for instance) and the relationship between the perceived quality for the different types of wine
+- comparing consumer purchasing data with quality evaluation to build a profile that helps predict wines that would match the consumer's palate 
+- comparing how cost affects the perception of the quality of wine
 
-```
+<br> 
+That's it for now. Thanks for reading!
+
+
+
