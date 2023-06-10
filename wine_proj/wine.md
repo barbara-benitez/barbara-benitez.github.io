@@ -65,17 +65,20 @@ I was not too convinced about the linearly separable assumption in the data to b
 I expected the Ridge Classifier to model quality relatively well, and it did. It tends to handle collinearity well, and the datset was culled a bit to remove highly correlated features. I used the defaualt tuning of the regularizaion to control overfitting. With another pass at modeling the data, I would probably change alpha to see the model would improve. 
 </li>
 <li> Random Forest Classifier<br>
-Random Forest is just the bomb always as shallow algorithms go. Since the dataset was not that big, computation time was not really an issue. It was the best model for the quality of the wine at approximately 75% correct evaluation. I liked using Random Forest as it was unlikely to overfit even using the default number of trees. 
+Random Forest is just the bomb always as shallow algorithms go. Since the dataset was not that big, computation time was not really an issue. It was the best model for the quality of the wine at approximately 75% correct evaluation. I liked using Random Forest as it was unlikely to overfit even using the default number of trees. I looked at feature importance to really hone in on what the model showed to be the most important in determining the quality of the wine. Spoiler alert! The alcohol content is king! More on that later though.
 </li>
 <li> XGBoost Classifier<br>
-Just as with the Random Forest Classifier I expected it to perform well, and it did. In fact, it was a close second. 
+Just as with the Random Forest Classifier I expected it to perform well, and it did. In fact, it was a close second. I also looked at the feature importances for this model. The results were largely similar, although this model placed the alcohol importance at nearly twice as important as the next feature. This was not the case with the Random Forest Model. 
 </li>
 <li> Neural Network Classifier<br>
+Now this was the only deep learning model that I used in this exploration. More than anything, I wanted to see if it would outperform the shallow algorithms--which it really did not. Since this is such a small dataset, I was also worried about it possibly overfitting the data. In the end, this model was the fifth most accurate out of nine. There does not seem to be any reason to use a deep learning model from what I can tell. 
 </li>
 <li> SVM<br>
+Finally, I tried support vector machines. I worry about computation time to be honest as it seems to be the pokiest of the shallow algoritms. With the dataset it was not an issue, but it performed pretty poorly. I suspect that some tuning of parameters would have likely improved its accuracy. 
 </li>
-
-It turns out that as explorations go, I expected the models to mostly perform badly, but I also expected the neural network to perform on the high end. 
+<br>
+<br>
+It turns out that as explorations go, I expected the models to mostly perform badly without some fine tuning, but I also expected the neural network to perform on the high end. 
 
 
 
