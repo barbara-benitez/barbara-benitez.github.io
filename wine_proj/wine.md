@@ -1180,6 +1180,54 @@ print("Random Forest Accuracy Score: ", accuracy_rf)
     Random Forest Accuracy Score:  0.7505863956215794
 
 
+
+```python
+importances = rf.feature_importances_
+
+# Print the feature importances
+for feature, importance in zip(X_train.columns, importances):
+    print(f"{feature}: {importance}")
+```
+
+    volatile acidity: 0.1621988083697836
+    citric acid: 0.06953486385873693
+    residual sugar: 0.055230878066261535
+    chlorides: 0.10691575550204956
+    total sulfur dioxide: 0.13556143648974062
+    density: 0.10360789078509489
+    pH: 0.07867991921216391
+    sulphates: 0.1193080282822712
+    alcohol: 0.16896241943389773
+
+
+
+```python
+# Sort the feature importances in descending order
+sorted_indices = np.argsort(importances)[::-1]
+sorted_importances = importances[sorted_indices]
+sorted_features = X_train.columns[sorted_indices]
+```
+
+
+```python
+# Create a bar plot of feature importances
+plt.figure(figsize=(10, 6))
+plt.bar(range(len(sorted_importances)), sorted_importances)
+plt.xticks(range(len(sorted_importances)), sorted_features, rotation='vertical')
+plt.xlabel('Features')
+plt.ylabel('Importance')
+plt.title('Feature Importances for Random Forest Classifier')
+plt.tight_layout()
+plt.show()
+```
+
+
+    
+![png](output_71_0.png)
+    
+
+
+
 ## XGBoost Classifier
 
 
@@ -1217,6 +1265,59 @@ print("XGBoost Classifier Accuracy Score: ", accuracy_xgb)
     Ridge Classifier Accuracy Score:  0.727130570758405
     Random Forest Accuracy Score:  0.7505863956215794
     XGBoost Classifier Accuracy Score:  0.745113369820172
+
+
+
+```python
+# Access the feature importances
+importances_xgb = xgb.feature_importances_
+```
+
+
+```python
+# Print the feature importances
+for feature, importance in zip(X_train.columns, importances_xgb):
+    print(f"{feature}: {importance}")
+```
+
+    volatile acidity: 0.13444578647613525
+    citric acid: 0.0590837188065052
+    residual sugar: 0.05514124780893326
+    chlorides: 0.11008543521165848
+    total sulfur dioxide: 0.11959460377693176
+    density: 0.08419746160507202
+    pH: 0.08494173735380173
+    sulphates: 0.12188128381967545
+    alcohol: 0.23062869906425476
+
+
+
+```python
+# Sort the feature importances in descending order
+sorted_indices = np.argsort(importances_xgb)[::-1]
+sorted_importances = importances_xgb[sorted_indices]
+sorted_features = X_train.columns[sorted_indices]
+```
+
+
+```python
+# Create a bar plot of feature importances
+plt.figure(figsize=(10, 6))
+plt.bar(range(len(sorted_importances)), sorted_importances, color='red')
+plt.xticks(range(len(sorted_importances)), sorted_features, rotation='vertical')
+plt.xlabel('Features')
+plt.ylabel('Importance')
+plt.title('Feature Importances for XGBoost Classifier')
+plt.tight_layout()
+plt.show()
+```
+
+
+    
+![png](output_75_0.png)
+    
+
+
 
 
 ## Basic Neural Network
