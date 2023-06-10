@@ -2,11 +2,11 @@
 
 # Fine wine is like fine linen. <span style="color:blue"> It is difficult to replicate, but you know it when you have it.</span> 
 
-An industrious winemaker has tasked me with the evaluation of wine quality to make it more appealing to discerning palates. The evaluation is to be  based on several known characteristics of the wine. The wine drinker then assigns a score to evaluate the quality of the wine. Scores can range from 0 to 8.
+An industrious winemaker has tasked me with the evaluation of wine quality to make it more appealing to discerning palates. The evaluation is to be  based on several measurable characteristics of the wine. The wine drinker then assigns a score to evaluate the quality of the wine. Scores can range from 0 to 8.
 
 
 
-This project was particularly fun because the data is subjective reviews with several objective measures of wine. (How acidic do you like your wine?) Moreover, the evaluation of a wine's quality is highly variable even for exceptionally expensive wines. I like a challenge. 
+This was a particularly fun dataset to examine because the target variable is highly subjective whereas it is coupled with several objective measures in the wine making process. (How acidic do you like your wine?) Moreover, the evaluation of a wine's quality is highly variable even for exceptionally expensive wines. I like a challenge. 
 
 
 
