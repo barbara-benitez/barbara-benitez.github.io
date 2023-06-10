@@ -4,9 +4,10 @@
 
 An industrious winemaker has tasked me with the evaluation of wine quality to make it more appealing to discerning palates. The evaluation is to be  based on several measurable characteristics of the wine. The wine drinker then assigns a score to evaluate the quality of the wine. Scores can range from 0 to 8.
 
+## Bottom Line
+The Random Forest Classifier was the best algorithm at classifying wine quality, and the four most important elements in determining the quality of the wine were found to be alcohol, volatile acidity, sulfates, and total sulfuric acid. If your business aims to improve its consumer's perception of quality those four elements in the wine making process will lead to higher evaluations and ultimately more sales. 
 
-
-This was a particularly fun dataset to examine because the target variable is highly subjective whereas it is coupled with several objective measures in the wine making process. (How acidic do you like your wine?) Moreover, the evaluation of a wine's quality is highly variable even for exceptionally expensive wines. I like a challenge. 
+This was a particularly fun dataset to examine because the target variable is highly subjective and it is coupled with several objective measures in the wine making process. (How acidic do you like your wine?) Moreover, the evaluation of a wine's quality is highly variable even for exceptionally expensive wines. This makes me expect a particularly noisy dataset.  I like a challenge. 
 
 
 
