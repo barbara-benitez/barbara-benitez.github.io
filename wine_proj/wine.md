@@ -48,18 +48,32 @@ My goal is to determine the most important features, and find a machine learning
 
 # What I Expected Versus What I Got
 I tried several shallow algorithms and one basic neural network in this project.  
-1. Naive Bayes Classifier
-I really hoped that this classifier would surprise me. It is used so frequently in the wild for classification problems, and despite the fact that the assumptions governing its use are often not met, it tends to perform relatively well in practice. I knew that there was correlation in the data and that the features were definitely not independent, but I couldn't help myself but explore the model--maybe it would surprise me. Well, it didn't. In fact, it performed the most poorly of all the models. 
-2. Decision Tree Classifier
+<ol>
+  <li> Naive Bayes Classifier <br>
+I really hoped that this classifier would surprise me. It is used so frequently in the wild for classification problems, and despite the fact that the assumptions governing its use are often not met, it tends to perform relatively well in practice. I knew that there was correlation in the data and that the features were definitely not independent, but I couldn't help myself but explore the model--maybe it would surprise me. Well, it didn't. In fact, it performed the most poorly of all the models.
+</li>
+<li> Decision Tree Classifier <br>
 I knew that this classifier should be able to handle any nonlinear relationships in the data. Also, I was a little concerned about overfitting, but I gave it whirl. It was mediocre at 66% accuracy. I was disappointed, but having more classifiers in my pocket, I forged on.
-3. KNN Classifier
-So this was one that disappointed me. I used KNN with the default 5 neighbors. I really hoped it would uncover some great pattern in the data, but it actually performed worse than the Naive Bayes algoroithm. 
-4. Logistic Regression Classifier
-5. Ridge Classifier
-6. Random Forest Classifier
-7. XGBoost Classifier
-8. Neural Network Classifier
-9. SVM
+</li>
+<li> KNN Classifier<br>
+So this was one that disappointed me. I used KNN with the default 5 neighbors. I really hoped it would uncover some great pattern in the data, but it actually performed worse than the Naive Bayes algorithm.
+</li>
+<li> Logistic Regression Classifier<br>
+I was not too convinced about the linearly separable assumption in the data to be honest. I figured this would probably be a mess, but it turned to be one of the more reliable classifiers. On the one hand, there were not any glaring signs of outliers in the data. Each feature varied pretty smoothly with the quality rating. I admit I was surprised. 
+</li>
+<li> Ridge Classifier<br>
+I expected the Ridge Classifier to model quality relatively well, and it did. It tends to handle collinearity well, and the datset was culled a bit to remove highly correlated features. I used the defaualt tuning of the regularizaion to control overfitting. With another pass at modeling the data, I would probably change alpha to see the model would improve. 
+</li>
+<li> Random Forest Classifier<br>
+Random Forest is just the bomb always as shallow algorithms go. Since the dataset was not that big, computation time was not really an issue. It was the best model for the quality of the wine at approximately 75% correct evaluation. I liked using Random Forest as it was unlikely to overfit even using the default number of trees. 
+</li>
+<li> XGBoost Classifier<br>
+Just as with the Random Forest Classifier I expected it to perform well, and it did. In fact, it was a close second. 
+</li>
+<li> Neural Network Classifier<br>
+</li>
+<li> SVM<br>
+</li>
 
 It turns out that as explorations go, I expected the models to mostly perform badly, but I also expected the neural network to perform on the high end. 
 
