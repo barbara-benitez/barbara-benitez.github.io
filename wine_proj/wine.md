@@ -40,15 +40,26 @@ What we are given is:
 
 
 # Problem Statement 
-You really want to know how good a wine is before it hits the market. Some wines have the advantage of name recognition and garner higher prices just for having a recognizable label, but most wines are left with the hope of dusting the palate with something memorable so that you forget the price tag. That is what a good wine maker wants to replicate. Just like a fine article of designer clothing that you just have to have. You want a wine that calls to you. Frankly, I want that wine too! (Promontory, Bond, anyone?) It sure would be good to know this before letting the wine rest in a barrel for a few years!
+You really want to know how good a wine is before it hits the market. Some wines have the advantage of name recognition and garner higher prices just for having a recognizable label, but most wines are left with the hope of dusting the palate with something memorable so that you forget the price tag. That is what a good wine maker wants to replicate. It is just like a fine article of designer clothing that you just have to have. You want a wine that calls to you. Frankly, I want that wine too! (Promontory, Bond, anyone?) It sure would be good to know this before letting the wine rest in a barrel for a few years!
 
-The second issue that there are a lot refinements made to wine to make it palatable. Besides how long it sits in a tank, how much citric acid to add, for instance, changes the acidity of the wine and how ``fresh" it appears to the consider. There are so many factors that can impact the wine so we really want to whittle it down to the most important elements. Boom! We need some machine learning to help us along. 
+The second issue that there are a lot refinements made to wine to make it palatable. Besides how long it sits in a tank, how much citric acid to add, for instance, changes the acidity of the wine and how ``fresh" it appears to the consumer. There are so many factors that can impact the wine making process so we really want to whittle it down to the most important elements. Boom! Although the prospect of tasting wine with a clipboard in hand sounds fun, it might make for some befuddled, drunken evaluations. We need some machine learning to help us along. Quality control should be enjoyed at the end!
 
-My goal is to determine the most important element, and find a machine learning algorithm that can predict most closely the subjective rating of the wine consumer.
+My goal is to determine the most important features, and find a machine learning algorithm that can predict most closely the subjective rating of the wine consumer.
 
 # What I Expected Versus What I Got
 I tried several shallow algorithms and one basic neural network in this project.  
-1.
+1. Naive Bayes Classifier
+I really hoped that this classifier would surprise me. It is used so frequently in the wild for classification problems, and despite the fact that the assumptions governing its use are often not met, it tends to perform relatively well in practice. I knew that there was correlation in the data and that the features were definitely not independent, but I couldn't help myself but explore the model--maybe it would surprise me. Well, it didn't. In fact, it performed the most poorly of all the models. 
+2. Decision Tree Classifier
+I knew that this classifier should be able to handle any nonlinear relationships in the data. Also, I was a little concerned about overfitting, but I gave it whirl. It was mediocre at 66% accuracy. I was disappointed, but having more classifiers in my pocket, I forged on.
+3. KNN Classifier
+So this was one that disappointed me. I used KNN with the default 5 neighbors. I really hoped it would uncover some great pattern in the data, but it actually performed worse than the Naive Bayes algoroithm. 
+4. Logistic Regression Classifier
+5. Ridge Classifier
+6. Random Forest Classifier
+7. XGBoost Classifier
+8. Neural Network Classifier
+9. SVM
 
 It turns out that as explorations go, I expected the models to mostly perform badly, but I also expected the neural network to perform on the high end. 
 
