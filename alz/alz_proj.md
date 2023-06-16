@@ -89,7 +89,7 @@ This exploration really made me think. We really need to consider how and when w
 There are several directions for future exploration.
 - Incorporating more data, in particular, data including comorbidity factors such as diabetes and heart disease in order to determine which particular lifestyle factors pose the greatest risk
 - Looking at the data using clustering algorithms to see if there are patterns not captured by including the target variable in the data
--  Another exploration would be to look 
+- Another exploration would be to look at the two leading assessments: CDR and MMSE to see if there administration at regular (perhaps annual) intervals can help identify Alzheimer earlier
 
 
 
