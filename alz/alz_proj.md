@@ -17,11 +17,15 @@ This project focused on two aspects of this inquiry:
 
 
 ## TLDR
-I explored the effectiveness of the six models in two different ways. First, I used 5-fold cross validation to evaluate each model using its default hyperparameters. In every model, the clinical dementia rating (CDR) was the most important indicator of disease. In the cross validation runs, the Random Forest algorithm outperformed the other models. 
+I explored the effectiveness of the six models. First, I used 5-fold cross validation to evaluate each model using its default hyperparameters. In every model, the clinical dementia rating (CDR) was the most important indicator of disease. In the cross validation runs, the Random Forest algorithm outperformed the other models. 
 
-Next I used GridSearch to tune the hyperparameters of each learning model. Gradient Boost was the most accurate in predicting Alzheimer's disease in the data, and the most important feature used in predicting Alzheimer's was again the CDR. 
+Next, I used GridSearch to tune the hyperparameters of each learning model. Gradient Boost was the most accurate in predicting Alzheimer's disease in the data, and the most important feature used in predicting Alzheimer's was again the CDR. 
 
-A clinical dementia interview produces the CDR. Clearly, this interview is a reliable means of identifying the presence of Alzheimer's. I believe that it should be administered as individuals increase in age and risk for Alzheimer. At present, this interview is typically  performed as part of the comprehensive assessment of individuals suspected of having dementia or cognitive impairment.  Given that the disease is believed to unfold years before any manifestation of symptoms, I believe that it would be useful to begin interviews before the onset of symptoms. This measure comes at little cost to the individual and practitioner but can have great implications if it can be used to identify deterioration of the mind earlier. The implications of identifying individuals at risk earlier can have enormous economic and healthcare implications. 
+A clinical dementia interview produces the CDR. It is routinely used to provide a comprehensive evaluation of cognitive impairment, functional abilities, and behavioral symptoms associated with dementia, but it lacks sensitivity in detecting subtle cognitive impairments or early stages of dementia. Based on the data, this interview is a reliable means of identifying diagnosed Alzheimer's. Again, this makes sense as the CDR is generally administered to individuals once they have significant cognitive impairment. 
+
+The Mini Mental State Examination (MMSE), on the other hand, is routinely administered at earlier stages as a preliminary screening tool and generally requires additional assessments for a comprehensive diagnosis. I expected that it would have performed better at predicting the presence of Alzheimer's disease, but it did not. This is alarming as it is one of most common tools for assessment of cognitive decline because it is quick and inexpensive. 
+
+I believe that the CDR should be administered routintely as individuals increase in age and risk for Alzheimer. The assessment only takes around 20 minutes time and is comprised of standardized questions.  At present, this interview is typically  performed as part of the comprehensive assessment of individuals already suspected of having dementia or cognitive impairment.  Given that the disease is believed to unfold years before any manifestation of symptoms, I believe that it would be useful to begin these interviews well before the onset of symptoms. This measure comes at some cost to the individual and practitioner but can have great implications if it can be used to identify deterioration of the mind earlier. The implications of identifying individuals at risk earlier can have enormous economic and healthcare implications. 
 
 
 ## Table of Contents
@@ -65,7 +69,14 @@ Group is the target class for the models
 
 The classification of Alzheimer's is complex and believed to be affected by both genetic and environmental factors. Moreover, current research indicates that the deterioration of the mind begins 20 or more years before any symptoms of memory loss develop. Hence, the better we can understand the factors that influence this degeneration of the mind, the sooner we can begin to adapt our behavior (lifestyle or clinically) to stave the disease off. 
 
-This exploration w
+
+This exploration looked at the following supervised machine learning classification models:
+1. Logistic regression
+2. Decision tree
+3. Random forest
+4. Gradient Boost
+5. SVC
+6. K-nearest neighbors
 
  
 
@@ -77,7 +88,19 @@ Another surprising result of the analysis was that the Mini Mental State Examina
 
 # Getting Started with the Data
 
+The data were downloaded from Kaggle. It was availabe as a cvs with ten columns including the target variable. 
+
 # Exploring the Data
+
+There were 373 individuals included in the data with a mean age of 77.0 $\pm 7.6$ years. The individuals in the data were between the ages of 60 and 98. 
+\\(
+   \begin{tabular}{cccc}
+   \hline
+    & Demented & Converted & Non-demented\\
+   \bf Men & \\
+   \bf Women & \\
+   \end{tabular}
+\\)
 
 # Pre-Processing the Data
 
