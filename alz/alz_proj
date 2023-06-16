@@ -8,11 +8,15 @@
 
 ## According to the Alzheimer's Association, as of 2023, the health and long-term cost of people living with Alzheimer's disease and other dementias are projected to be $345 billion dollars. 
 
-My goal with this project was to examine several factors that are tracked as factors that influence the development of Alzheimer's disease. This is a disease that I know and understand due to personal experience. Any insights that can help us understand how to detect accurately Alzheimer's can result in additional years of quality of life for those affected by the disease. 
+My goal with this project was to examine several factors that are often tracked as factors that influence the development of Alzheimer's disease. This is a disease that I know and understand due to personal experience. Any insights that can help us understand which factors are implicated in its manifestation is critical to early detection. Accurately detecting  Alzheimer's can result in additional years of quality of life for those affected by the disease. 
+
+This project focused on two aspects of this inquiry:
+   1. Which supervised learning model would provide the best identification of an individual with Alzheimer's disease? 
+   2. Which features of the leading model provided the most insight?
 
 
 ## TLDR
-
+I explored the effectiveness of the six models in two different ways. First, I used 5-fold cross validation to evaluate the models with the standard hyperameters for ach alogrithm. In each case, the clinical dementia rating (CDR) was the most important indicator of disease. I tuned the hyperparameters of six supervised learning models and found that gradient boost was the most accurate in predicting Alzheimer's disease in the data. This exploration 
 
 
 Table of Contents
