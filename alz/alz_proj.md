@@ -115,5 +115,5 @@ There are several directions for future exploration.
 - Another exploration would be to look at the two leading assessments: CDR and MMSE to see if there administration at regular (perhaps annual) intervals can help identify Alzheimer earlier
 
 
-
+If you would like to see the code I wrote to generate these results, click here. 
 
