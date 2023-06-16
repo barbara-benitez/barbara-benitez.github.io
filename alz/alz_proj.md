@@ -93,14 +93,14 @@ The data were downloaded from Kaggle. It was availabe as a cvs with ten columns 
 # Exploring the Data
 
 There were 373 individuals included in the data with a mean age of 77.0 $\pm 7.6$ years. The individuals in the data were between the ages of 60 and 98. 
-  $$ \begin{tabular}{cccc}
-      \hline
-       & Demented & Converted & Non-demented\\
-       \hline
-       Men & 86 & 13 & 61\\
-      \hline
-       Women & 60 & 24 & 129 \\
-   \end{tabular}$$
+
+
+|      | Demented | Converted | Non-demented |
+|------|----------|-----------|--------------|
+| Men  | 86       | 13        |61            |
+| Women| 60       | 24        | 129          |
+
+   
 
 # Pre-Processing the Data
 
