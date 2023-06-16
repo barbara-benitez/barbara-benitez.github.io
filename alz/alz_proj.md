@@ -17,7 +17,7 @@ This project focused on two aspects of this inquiry:
 
 
 ## TLDR
-I explored the effectiveness of the six models in two different ways. First, I used 5-fold cross validation to evaluate each model using its default hyperameters. In every model, the clinical dementia rating (CDR) was the most important indicator of disease. In the cross validation runs, the Random Forest algorithm outperformed the other models. 
+I explored the effectiveness of the six models in two different ways. First, I used 5-fold cross validation to evaluate each model using its default hyperparameters. In every model, the clinical dementia rating (CDR) was the most important indicator of disease. In the cross validation runs, the Random Forest algorithm outperformed the other models. 
 
 Next I used GridSearch to tune the hyperparameters of each learning model. Gradient Boost was the most accurate in predicting Alzheimer's disease in the data, and the most important feature used in predicting Alzheimer's was again the CDR. 
 
@@ -71,7 +71,9 @@ This exploration w
 
 # What I Expected Versus What I Got
 
-We know that women tend to have a higher incidence of the disease than men (approximately 66% of women as opposed to 34%  of men) so I expected the gender of the individual to have a greater effect on the diagnosis of women. Current research has implicated factors such as diet and lifestyle interventions to prevent cognitive decline. (See work from Dr. Martha Clare Morris, Rush University Medical Center, Alzheimer's Association, and National Institute on Aging to name a few.) These factors are generally closely linked iwth socioeconomic status and years of education. 
+Current research has implicated factors such as poor diet and lifestyle as risk factors for cognitive decline. (See work from Dr. Martha Clare Morris, Rush University Medical Center, Alzheimer's Association, and National Institute on Aging to name a few.) Since these factors are generally closely linked with socioeconomic status and years of education, I was certain that they would be highly associated with the prediction of disease. They did not come close, however, to the importance of CDR and age. In fact, socioeconomic status and education were on the lowest end of the factors. 
+
+Another surprising result of the analysis was that the Mini Mental State Examination (MMSE) scored very poorly at predicting the disease. 
 
 # Getting Started with the Data
 
@@ -79,7 +81,15 @@ We know that women tend to have a higher incidence of the disease than men (appr
 
 # Pre-Processing the Data
 
-# The Models with Standard 
+# The Models
+
+# Final Thoughts
+This exploration really made me think. We really need to consider how and when we are diagnosing our aging populations. Currently, the only recommendations we really receive from most doctors is to just be healthy and carry on in the hope that we are not one of the unlucky ones to be diagnosed in the future. That is such a passive way to approach such a debilitating disease. We need to screen well before we have symptoms, and we need to really hone in on those factors most heavily implicated in the development of the disease. 
+
+There are several directions for future exploration.
+- Incorporating more data, in particular, data including comorbidity factors such as diabetes and heart disease in order to determine which particular lifestyle factors pose the greatest risk
+- Looking at the data using clustering algorithms to see if there are patterns not captured by including the target variable in the data
+-  Another exploration would be to look 
 
 
 
