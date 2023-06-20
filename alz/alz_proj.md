@@ -88,23 +88,28 @@ Another surprising result of the analysis was that the Mini Mental State Examina
 
 # Getting Started with the Data
 
-The data were downloaded from Kaggle. It was availabe as a cvs with ten columns including the target variable. 
+The data were downloaded from Kaggle. It was availabe as a csv file with ten columns including the target variable. 
 
 # Exploring the Data
 
-There were 373 individuals included in the data with a mean age of 77.0 $\pm 7.6$ years. The individuals in the data were between the ages of 60 and 98. 
+There were 373 individuals included in the data with a mean age of 77.0 $\pm$ 7.6 years. The individuals in the data were between the ages of 60 and 98. 
 
 
 |      | Demented | Converted | Non-demented |
 |------|----------|-----------|--------------|
-| Men  | 86       | 13        |61            |
-| Women| 60       | 24        | 129          |
+| Men  | 86       | 13        |    61        |
+| Women| 60       | 24        |   129        |
 
-   
+The average education level of the cohort was at the tertiary level with 14.6 years $\pm$ 2.9, and the socioeconomic status of the cohort was 
+
+From a clinical observation level, the scores on the MMSE exam ranged from a minimum of 4 to a maximum of 30 out of 30. (A score of 25 or higher indicates no impairment.) I had hoped that this exam would have more influence on the early detection of brain deterioration. In contrast, the CDR exam ranged from a score of 0 to a score of 2. (A score of 0 indicates no dementia whereas 2 indicates severe impairment.) 
 
 # Pre-Processing the Data
+I changed the categorical variables (M/F and Group) to numeric variables and relabeled them as 'gender' and 'alz'. I also removed the missing values from the dataset. Overall, the dataset was not terribly messy.
+
 
 # The Models
+I explored six different models in this exploration. Ultimately, the XGBoost scored highest in the evaluation metrics. I measured the model accuracy (correct overall classification), precision (quality of positive predictions to all predicted positives), recall (quality of the predicted positives over actual positives), and F1 score (balance between recall and precision). All individual metrics scored above 0.87, except F1 which was at 0.84 which is quite good. 
 
 # Final Thoughts
 This exploration really made me think. We really need to consider how and when we are diagnosing our aging populations. Currently, the only recommendations we really receive from most doctors is to just be healthy and carry on in the hope that we are not one of the unlucky ones to be diagnosed in the future. That is such a passive way to approach such a debilitating disease. We need to screen well before we have symptoms, and we need to really hone in on those factors most heavily implicated in the development of the disease. 
