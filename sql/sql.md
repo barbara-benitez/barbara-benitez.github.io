@@ -7,11 +7,11 @@ The management of blood sugar levels in diabetics has a **significant impact on 
 
 My administrator is trying to understand the current state of a large hospital system. She is swamped and needs some information to quickly make some decisions.  The data is comprised of 10 years worth of clinical care data for over 130 hospitals and integrated networks. I have been tasked with answering several questions. 
 
-I used SQL to answer each question. 
+I used SQL to answer provide insight and make actionable recommendations.
 
 ## Objectives
 
-I am assuming the role of data analyst for the hospital. I have been tasked with answering specific questions by the hospital administrator to improve patient safety in the hospital system for diabetics. Specifically, I am to address the following concerns:
+I am assuming the role of data analyst for the hospital. I have been asked specific questions by the hospital administrator to improve patient safety in the hospital system for diabetics. Specifically, I am to address the following concerns:
 1.	Treatment bias by race: find the average number of lab procedures by race. 
 Does it appear that different races are being treated differently?
 2.	Number of lab procedures as related to time spent in the hospital: categorize the number of lab procedures as few, average and many
@@ -30,7 +30,9 @@ Does there appear to be a relationship between the number of lab procedures and 
    Do the majority of patients stay less than 7 days? Once patients stay over 7 days, are these patients very acute?
 
 ## Key Findings
+1. There were five race groups in the data. The unidentified group and the African American group had the highest number of lab procedures overall.
 
+3. 
 
 
 
