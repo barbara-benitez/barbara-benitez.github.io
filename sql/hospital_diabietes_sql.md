@@ -31,6 +31,7 @@ Does there appear to be a relationship between the number of lab procedures and 
 
 ## Key Findings
 1. There were five race groups in the data. The unidentified group and the African American group had the highest number of lab procedures overall.
+2. There was definitely a direct relationship between the average number of lab procedures and the amount of time spent in the hospital. In fact, there was roughly a two procedure increase for each additional day the patient stayed in the hospital on average. 
 
 3. 
 
@@ -64,8 +65,26 @@ Average number of lab procedures by race:
 
 Clearly, the unidentified group and the African American groups had more procedures than any other group, but those same groups did 
 
-
-
+The number of lab procedures as compared to the number of days in the hospital increased by approximately two procedures on average. 
+| No. of Days in Hospital |  Avg no. of Lab Procedures |
+--------------------------|-----------|
+| Few Days  |
+|1|	32.91751126126126|
+|2|	37.69710868555504|
+|3|	40.38640459562965|
+|4|	43.80142200517093|
+| Average Days  |
+|5|	46.75336142885812|
+|6	|48.49794402440642|
+|7|	50.115207373271886|
+|8|	51.423138237303576|
+|9|	53.26748834110593|
+|High Days |
+|10|	53.566182749786506|
+|11|	54.25822102425876|
+|12|	54.889502762430936|
+|13|	55.60413223140496|
+|14|	55.592130518234164|
 
 
 
