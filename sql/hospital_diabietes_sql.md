@@ -56,12 +56,12 @@ Average number of lab procedures by race:
 
 |Race | Avg No. of Lab Procedures| Avg Time in Hospital|
 ------|---------------------------|---|
-|Unidentified|	44.104707435107784	|4.289485261768588|
-|AfricanAmerican	|44.08505986465383|	4.507860489328475
-|Other|	43.43691899070385|	4.273572377158034|
-|Caucasian|	42.83294130014849|	4.385721231553634|
-|Hispanic|	42.793323514973|	4.059891998036328|
-|Asian|	41.21216848673947|	3.995319812792512|
+|Unidentified|	44.10	|4.29|
+|AfricanAmerican	|44.09|	4.51|
+|Other|	43.44|	4.27|
+|Caucasian|	42.83|	4.39|
+|Hispanic|	42.79|	4.06|
+|Asian|	41.21|	4.00|
 
 Clearly, the unidentified group and the African American groups had more procedures than any other group, but those same groups did 
 
@@ -69,22 +69,22 @@ The number of lab procedures as compared to the number of days in the hospital i
 | No. of Days in Hospital |  Avg no. of Lab Procedures |
 --------------------------|-----------|
 | Few Days  |
-|1|	32.91751126126126|
-|2|	37.69710868555504|
-|3|	40.38640459562965|
-|4|	43.80142200517093|
+|1|	32.92|
+|2|	37.70|
+|3|	40.39|
+|4|	43.80|
 | Average Days  |
-|5|	46.75336142885812|
-|6	|48.49794402440642|
-|7|	50.115207373271886|
-|8|	51.423138237303576|
-|9|	53.26748834110593|
+|5|	46.75|
+|6	|48.50|
+|7|	50.12|
+|8|	51.42|
+|9|	53.27|
 |High Days |
-|10|	53.566182749786506|
-|11|	54.25822102425876|
-|12|	54.889502762430936|
-|13|	55.60413223140496|
-|14|	55.592130518234164|
+|10|	53.57|
+|11|	54.26|
+|12|	54.89|
+|13|	55.60|
+|14|	55.59|
 
 
 
