@@ -63,8 +63,11 @@ The average number of lab procedures by race is summarized in the table.
 |Hispanic|	42.79|	4.06|
 |Asian|	41.21|	4.00|
 
-These finding were obtained using the query that follows. <img src="timeinhopt_labproc.png?raw=true" width="500" height="400" alt="My Image">
+These finding were obtained using the query that follows. 
+<p align="center">
+  <img src="timeinhopt_labproc.jpg?raw=true" width="500" height="400" alt="My Image">
 <span style="font-size: small; text-align: right;">
+</p>
 
 
 Clearly, the unidentified group and the African American groups had more procedures than any other group, but those same groups did 
