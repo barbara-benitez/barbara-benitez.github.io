@@ -7,7 +7,7 @@ The management of blood sugar levels in diabetics has a **significant impact on 
 
 My administrator is trying to understand the current state of a large hospital system. She is swamped and needs some information to quickly make some decisions.  The data is comprised of 10 years worth of clinical care data for over 130 hospitals and integrated networks. I have been tasked with answering several questions. 
 
-I used SQL to answer provide insight and make actionable recommendations.
+I used SQL (primarily) and Excel to answer provide insight and make actionable recommendations.
 
 ## Objectives
 
@@ -121,9 +121,19 @@ Now the administrator also wanted a listing of all of the patients that came in 
   <img src="emerg_less_than.jpg?raw=true" alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
-It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. It would certainly be helpful to understand if these were truly emergencies or perhaps visits that were initially entered as emergencies but were really perhaps routine appointments for individuals without insurance or access to regular medical services. Emergency and trauma was the next largest group with 859 patients. Again, comparing the number in the  unidentified group to the emergency/trauma group was surprising. I would definitely recommend that the hospital require more stringent categorization of specialty as the patients are admitted to help better identify how and whyt their average stay was so much lower. It was also noted that roughly 2,000 of these patients were over the age of 50. 
+It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. It would certainly be helpful to understand if these were truly emergencies or perhaps visits that were initially entered as emergencies but were really perhaps routine appointments for individuals without insurance or access to regular medical services. 
+  
+  Emergency and trauma was the next largest group with 859 patients. Again, comparing the number in the  unidentified group to the emergency/trauma group was surprising. I would definitely recommend that the hospital require more stringent categorization of specialty as the patients are admitted to help better identify how and why their average stay was so much lower. It was also noted that roughly 2,000 of these patients were over the age of 50. 
 
 
+
+  ### How are the number of days in the hospital distributed? 
+
+For this, I queried the database and imported the data into Excel to build a histogram of the number of patients per number of days in the hospital. 
+<p align="center">
+  <img src="daysinhospoverall.jpg?raw=true" alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
 
 
 
