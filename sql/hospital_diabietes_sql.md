@@ -15,21 +15,22 @@ I used SQL (primarily) and Excel to answer provide insight and make actionable r
 ## Objectives
 
 I am assuming the role of data analyst for the hospital. I have been asked specific questions by the hospital administrator to improve patient safety in the hospital system for diabetics. Specifically, I am to address the following concerns:
-1.	Treatment bias by race: find the average number of lab procedures by race. 
+1.	Treatment bias by race: find the average number of lab procedures by race.
 Does it appear that different races are being treated differently?
-2.	Number of lab procedures as related to time spent in the hospital: categorize the number of lab procedures as few, average and many
+2.	Number of lab procedures as related to time spent in the hospital: categorize the number of lab procedures as few, average and many.
 Does there appear to be a relationship between the number of lab procedures and the amount of time spent in the hospital?
 
-3.	List the medical specialties that have an average number of procedure count above 2.5 with the total procedure count above 50. Are there some specialties that are performing more procedures than expected?
+3.	List the medical specialties that have an average number of procedure count above 2.5 with the total procedure count above 50.
+   Are there some specialties that are performing more procedures than expected?
 
-4.	List all patients who had an emergency but left the hospital faster than the average.
+5.	List all patients who had an emergency but left the hospital faster than the average.
   Is there something different about these patients? Are they part of a specific group?
-5.	Research needs a list of all patient numbers who are African-America or have a "Up" to metformin
+6.	Research needs a list of all patient numbers who are African-America or have a "Up" to metformin.
    Does this group have any noteworthy characteristics?
-6.	Identify the distribution of time spent in the hospital
+7.	Identify the distribution of time spent in the hospital.
    Is the distribution normal or is there some other distribution that better describes the data?
    
-7.	Hospital stays by duration
+8.	Hospital stays by duration
    Do the majority of patients stay less than 7 days? Once patients stay over 7 days, are these patients very acute?
 
 ## Key Findings
@@ -133,12 +134,13 @@ There were 6 specialties that exceeded the 2.5 average number of procedures and 
 
 These all appeared to be very reasonable considering that each surgery was likely for a non-elective, medically necessary procedure. 
 
-
+### Did any patients coded as emergency procedures leave faster than the average?
 Now the administrator also wanted a listing of all of the patients that came in for emergency procedures but left faster than the average patient. This list was generated with the query that follows and resulted in 7677 patients.  
 <p align="center">
   <img src="emerg_less_than.jpg?raw=true" alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
+
   
 It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. I would recommend investigation into whether or not these were truly emergencies. Perhaps these visits that were initially entered as emergencies were really  routine appointments for individuals without insurance or access to regular medical services. These are important issues to raise with patients of this type.
   
@@ -159,7 +161,10 @@ For this, I queried the database and imported the data into Excel to build a his
 </p>
 These data clearly showed that the majority (79.2%) of patients stayed in the hospital for fewer than seven days. The data were right-skewed, and the majority of patients had stays of three days  in the hospital. 
 
-An additional query was performed to ascertain whether or not those patients having stays of 7 or more days were acutely. Surprisingly, this was not the case. Approximately, 1 in 5 patients was acute. I am suggesting that the administration require additional justification for extended stays when the patients are not acute. 
+An additional query was performed to ascertain whether or not those patients having stays of 7 or more days were acute. Surprisingly, this was not the case. Approximately, 1 in 5 patients was acute. I am suggesting that the administration require additional justification for extended stays when the patients are not acute. 
+
+
+## Final Remarks
 
 
 
