@@ -9,6 +9,9 @@ My administrator is trying to understand the current state of a large hospital s
 
 I used SQL (primarily) and Excel to answer provide insight and make actionable recommendations.
 
+
+
+
 ## Objectives
 
 I am assuming the role of data analyst for the hospital. I have been asked specific questions by the hospital administrator to improve patient safety in the hospital system for diabetics. Specifically, I am to address the following concerns:
@@ -44,9 +47,12 @@ Does there appear to be a relationship between the number of lab procedures and 
 
 ## SQL Commands Used in this Project
 
-WHERE | FROM | GROUP BY | DISTINCT | ORDER BY | HAVING | COUNT | SUM | AVG | MAX 
+WHERE | FROM | GROUP BY | DISTINCT | ORDER BY | HAVING | COUNT | SUM | AVG | MAX | LIMIT
 
 I used https://csvfiddle.io/ to upload a csv file and convert it to a SQL file. This program allows for easy, 100% in-browser querying using SQL commands. 
+
+
+
 
 ## EDA
 
@@ -61,7 +67,7 @@ The average number of lab procedures by race is summarized in the table.
 |Race | Avg No. of Lab Procedures| Avg Time in Hospital|
 ------|---------------------------|---|
 |Unidentified|	44.10	|4.29|
-|AfricanAmerican	|44.09|	4.51|
+|African American	|44.09|	4.51|
 |Other|	43.44|	4.27|
 |Caucasian|	42.83|	4.39|
 |Hispanic|	42.79|	4.06|
@@ -74,8 +80,18 @@ These finding were obtained using the query that follows.
 </p>
 
 
-Clearly, the unidentified group and the African American groups had more procedures than any other group, but those same groups did 
+- The unidentified group and the African American groups had more procedures than any other group.
+- The African American group had the highest average amount of time in the hospital.
 
+
+### Lab Procedures Versus Number of Days in the Hospital
+
+<p align="center">
+  <img src="no_procedures_by_day.jpg?raw=true"  alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
+
+From the graph we can see that the relationship is fairly linear. 
 The number of lab procedures as compared to the number of days in the hospital increased by approximately two procedures on average. 
 | No. of Days in Hospital |  Avg no. of Lab Procedures |
 --------------------------|-----------|
@@ -97,6 +113,8 @@ The number of lab procedures as compared to the number of days in the hospital i
 |13|	55.60|
 |14|	55.59|
 
+
+### Are there any specialties that are performing more procedures than others? If so, are they justified?
 
 There were 6 specialties that exceeded the 2.5 average number of procedures and had over 50 procedures on the books. These specialties were obtained with the query
 <p align="center">
@@ -129,12 +147,18 @@ It was noteworthy that 3,944 of these emergency patients were admitted without a
 
   ### How are the number of days in the hospital distributed? 
 
+The number of days spent in the hospital has a large impact on the operations of the hospital (bed usage, staff-to-patient ratios) and a large financial impact on the patients themselves. Ideally, the number of days in the hospital reflects the clinical attention that the patient needs. 
+
+My administrator understands the need to balance patient care and hospital resources. We want to understand if the number of days in the hospital system are as expected and if those  with extended stays are justified.
+
 For this, I queried the database and imported the data into Excel to build a histogram of the number of patients per number of days in the hospital. 
 <p align="center">
   <img src="daysinhospoverall.jpg?raw=true" alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
+These data clearly showed that the majority (79.2%) of patients stayed in the hospital for fewer than seven days. The data were right-skewed, and the majority of patients had stays of three days  in the hospital. 
 
+An additional query was performed to ascertain whether or not those patients having stays of 7 or more days were acutely. Surprisingly, this was not the case. Approximately, 1 in 5 patients was acute. I am suggesting that the administration require additional justification for extended stays when the patients are not acute. 
 
 
 
