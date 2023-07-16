@@ -33,8 +33,12 @@ Does there appear to be a relationship between the number of lab procedures and 
 1. There were five race groups in the data. The unidentified group and the African American group had the highest number of lab procedures overall.
 2. There was definitely a direct relationship between the average number of lab procedures and the amount of time spent in the hospital. In fact, there was roughly a two procedure increase for each additional day the patient stayed in the hospital on average. 
 
-3. 
-
+3. There were 6 specialties that were performing more procedures than the specified threshold. None of these specialties seemed unreasonable.
+4. It was noteworthy that the largest group to leave the hospital faster than the average was unidentified in terms of specialty. Approximately 50% of these patients were over 50 years old. 
+5. There were exactly 206 patients of African American race that were coded with metformin "Up".
+6. The distribution of the time spent in the hospital was decidedly right-skewed; that is, most of the patients had short stays with the hospital.
+7. The data showed that 79.2% of the patients had stays of less than 7 days. Of the remaining 20.8%, the only 20.5% were acute. It appears that the administration should require additional scrutiny for those patients having longer stays without an acute diagnosis. 
+   
 
 
 
@@ -65,7 +69,7 @@ The average number of lab procedures by race is summarized in the table.
 
 These finding were obtained using the query that follows. 
 <p align="center">
-  <img src="timeinhopt_labproc.jpg?raw=true" width="500" height="400" alt="My Image">
+  <img src="timeinhopt_labproc.jpg?raw=true"   height="200" alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
 
@@ -96,7 +100,7 @@ The number of lab procedures as compared to the number of days in the hospital i
 
 There were 6 specialties that exceeded the 2.5 average number of procedures and had over 50 procedures on the books. These specialties were obtained with the query
 <p align="center">
-  <img src="hosp_specialty_gt_2,5.jpg?raw=true" width="500" height="400" alt="My Image">
+  <img src="hosp_specialty_gt_2,5.jpg?raw=true"   height="200" alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
 
@@ -114,10 +118,12 @@ These all appeared to be very reasonable considering that each surgery was likel
 
 Now the administrator also wanted a listing of all of the patients that came in for emergency procedures but left faster than the average patient. This list was generated with the query that follows and resulted in 7677 patients.  
 <p align="center">
-  <img src="emerg_less_than.jpg?raw=true" width="500" height="400" alt="My Image">
+  <img src="emerg_less_than.jpg?raw=true" alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
-It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. It would certainly be helpful to understand if these were truly emergencies or perhaps visits that were initially entered as emergencies but were really perhaps routine appointments for individuals without insurance or access to regular medical services. 
+It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. It would certainly be helpful to understand if these were truly emergencies or perhaps visits that were initially entered as emergencies but were really perhaps routine appointments for individuals without insurance or access to regular medical services. Emergency and trauma was the next largest group with 859 patients. Again, comparing the number in the  unidentified group to the emergency/trauma group was surprising. I would definitely recommend that the hospital require more stringent categorization of specialty as the patients are admitted to help better identify how and whyt their average stay was so much lower. It was also noted that roughly 2,000 of these patients were over the age of 50. 
+
+
 
 
 
