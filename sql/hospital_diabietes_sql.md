@@ -94,9 +94,30 @@ The number of lab procedures as compared to the number of days in the hospital i
 |14|	55.59|
 
 
+There were 6 specialties that exceeded the 2.5 average number of procedures and had over 50 procedures on the books. These specialties were obtained with the query
+<p align="center">
+  <img src="hosp_specialty_gt_2,5.jpg?raw=true" width="500" height="400" alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
+
+| Specialty | Avg. No of Procedures |
+--------|---------|
+|Surgery-Thoracic	|3.50|
+|Surgery-Cardiovascular/Thoracic	|3.25|
+|Radiologist	|3.24|
+|Cardiology|	2.70|
+|Surgery-Vascular|	2.57|
+|Radiology|	2.53|
+
+These all appeared to be very reasonable considering that each surgery was likely for a non-elective, medically necessary procedure. 
 
 
-
+Now the administrator also wanted a listing of all of the patients that came in for emergency procedures but left faster than the average patient. This list was generated with the query that follows and resulted in 7677 patients.  
+<p align="center">
+  <img src="emerg_less_than.jpg?raw=true" width="500" height="400" alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
+It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. It would certainly be helpful to understand if these were truly emergencies or perhaps visits that were initially entered as emergencies but were really perhaps routine appointments for individuals without insurance or access to regular medical services. 
 
 
 
