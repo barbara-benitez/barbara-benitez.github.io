@@ -139,9 +139,10 @@ Now the administrator also wanted a listing of all of the patients that came in 
   <img src="emerg_less_than.jpg?raw=true" alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
-It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. It would certainly be helpful to understand if these were truly emergencies or perhaps visits that were initially entered as emergencies but were really perhaps routine appointments for individuals without insurance or access to regular medical services. 
   
-  Emergency and trauma was the next largest group with 859 patients. Again, comparing the number in the  unidentified group to the emergency/trauma group was surprising. I would definitely recommend that the hospital require more stringent categorization of specialty as the patients are admitted to help better identify how and why their average stay was so much lower. It was also noted that roughly 2,000 of these patients were over the age of 50. 
+It was noteworthy that 3,944 of these emergency patients were admitted without an identified specialty. I would recommend investigation into whether or not these were truly emergencies. Perhaps these visits that were initially entered as emergencies were really  routine appointments for individuals without insurance or access to regular medical services. These are important issues to raise with patients of this type.
+  
+Emergency and trauma was the next largest group with 859 patients. Again, comparing the number in the  unidentified group to the emergency/trauma group was surprising. I would definitely suggest that the hospital require more stringent categorization of specialty as the patients are admitted to help better identify how and why their average stay was so much lower. It was also noted that roughly 2,000 of these patients were over the age of 50. It could also be helpful to consider if age had any implication on the stay.
 
 
 
