@@ -166,7 +166,17 @@ An additional query was performed to ascertain whether or not those patients hav
 
 ## Final Remarks
 
+The analysis of HbA1c measurement's impact on hospital readmission rates and overall safety has revealed important insights. Treatment bias by race was observed, with variations in the average number of lab procedures among different racial groups. Additionally, a direct relationship was found between the number of lab procedures and the duration of hospital stays.
 
+Several medical specialties were identified as performing more procedures than expected, but these numbers were found to be reasonable for non-elective, medically necessary surgeries. It was also discovered that a significant number of patients with emergency procedures left the hospital faster than the average patient, warranting further investigation into the nature of their emergencies.
+
+The distribution of time spent in the hospital was right-skewed, indicating that most patients had short stays. However, a proportion of patients stayed for more than seven days without acute conditions, suggesting the need for additional justification for extended stays.
+
+These findings provide valuable insights into the hospital system's current state and highlight areas where improvements can be made to enhance patient safety and care for diabetics. By addressing treatment bias, understanding the relationship between lab procedures and hospital stays, and closely examining emergency cases, hospitals can implement targeted interventions to optimize patient outcomes.
+
+By leveraging SQL and Excel for data analysis, the data analyst played a crucial role in providing actionable recommendations to the hospital administration. The use of these tools and techniques can empower healthcare professionals to make data-driven decisions and enhance patient safety across hospital systems.
+
+Through continuous monitoring, analysis, and improvement, hospitals can better serve diabetic patients, optimize resource utilization, and ultimately contribute to improved healthcare outcomes for all.
 
 
 
