@@ -46,7 +46,9 @@ By addressing the challenges faced by these schools, we can work towards increas
   <img src="overall_tableau_mass.jpg?raw=true"  alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
-For access to the dashboard, please visit [Massachusetts Education Data Set](https://public.tableau.com/app/profile/barbara.benitez4236/viz/MassechusettesEducationDataSet/MassachusettsEducationSummaryofMilestones).
+For access to the dashboard, please visit 
+  [link](https://public.tableau.com/app/profile/barbara.benitez4236/viz/MassechusettesEducationDataSet/MassachusettsEducationSummaryofMilestones)
+  .
 
 ## Data Analysis
 
