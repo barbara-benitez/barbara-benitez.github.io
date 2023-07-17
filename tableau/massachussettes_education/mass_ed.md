@@ -1,8 +1,11 @@
 # Analyzing Massachusetts Education Data: Insights for School Improvement
 
+<p align="center">
+  <img src="close-up-hands-holding-diplomas-caps.jpg?raw=true" width="400" height = "400" alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
 
-
-## Introduction:
+## Introduction
 
 As a data scientist recently hired by the State of Massachusetts, my task was to analyze the education data obtained from the Massachusetts Department of Education website. The Department of Education Superintendent sought a comprehensive report to present to the school board, highlighting the state of the school system and addressing key concerns such as the impact of class size on college attendance, identifying top math schools, and pinpointing schools that are struggling the most. 
 
@@ -31,6 +34,31 @@ Success in mathematics is often an indicator of logical reasoning skills that tr
 
 3. Struggling Schools and Recommendations:
 To identify struggling schools, I focused on those with a graduation rate below 50%. By isolating and visualizing these underperforming schools in a bar graph, I highlighted the schools having an urgent need for targeted support and interventions. These struggling schools require additional resources and follow-up support throughout the students' secondary education. By addressing the challenges faced by these schools, we can work towards increasing overall graduation rates and ensuring every student has equal access to a quality education.
+
+## Data Analysis
+
+### College Attendance and Class Size 
+
+<p align="center">
+  <img src="attend_v_class_size.jpg?raw=true"  alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
+
+Analyzing college attendance and class size is crucial in understanding their impact on graduation rates and overall student success. College attendance is a significant indicator of students' preparedness for higher education and their ability to transition successfully into post-secondary institutions. By examining the relationship between class size and college attendance, we can identify potential factors that either facilitate or hinder students' access to and preparedness for college. Class size plays a vital role in shaping the learning environment, as it directly influences the level of individual attention and support students receive from teachers. Smaller class sizes have been associated with improved student engagement, personalized instruction, and better academic outcomes. Conversely, larger class sizes may lead to reduced student engagement, limited interaction with teachers, and increased challenges in meeting individual student needs. By analyzing college attendance and class size, we gain insights into how these factors contribute to graduation rates, helping inform targeted interventions and resource allocation to enhance student success and increase overall graduation rates.
+
+### Top Performing Math Schools
+
+<p align="center">
+  <img src="math_pass.jpg?raw=true"  alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
+
+### Struggling Schools
+
+<p align="center">
+  <img src="grad_percent.jpg?raw=true"  alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
 
 ## Final thoughts
 The analysis of Massachusetts' education data provided crucial insights into the state of the school system. By understanding graduation rates, exploring the impact of class size on college attendance, identifying top math schools, and pinpointing struggling schools, we can develop targeted interventions and support systems to improve the overall quality of education. It is vital for the State of Massachusetts to invest in data-driven decision-making and continuously monitor progress to foster an educational environment that empowers all students to succeed.
