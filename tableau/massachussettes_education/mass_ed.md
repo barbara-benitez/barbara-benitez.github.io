@@ -13,7 +13,9 @@ The dataset used for this analysis was sourced from Kaggle and encompassed miles
 
 ## Concerns about Graduation Rates
 
-Understanding graduation rates is crucial as they serve as an essential metric for assessing the effectiveness of the education system. Low graduation rates can indicate various issues within the school system, such as inadequate resources, ineffective teaching methods, or lack of support for struggling students. Identifying schools with low graduation rates helps focus attention on those areas requiring immediate intervention and resources. By addressing the factors contributing to low graduation rates, we can work towards providing every student with a fair chance at academic success and future opportunities.
+Understanding graduation rates is crucial as they serve as an essential metric for assessing the effectiveness of the education system. Low graduation rates can indicate various issues within the school system, such as inadequate resources, ineffective teaching methods, or lack of support for struggling students. As an educator with several years of experience, I understand that graduation rates have a profound impact on students' future success and opportunities. 
+
+Identifying schools with low graduation rates helps focus attention on those areas requiring immediate intervention and resources. By addressing the factors contributing to low graduation rates, we can work towards providing every student with a fair chance at academic success and future opportunities. 
 
 ## Key Findings and Recommendations:
 
@@ -34,6 +36,15 @@ Success in mathematics is often an indicator of logical reasoning skills that tr
 
 3. Struggling Schools and Recommendations:
 To identify struggling schools, I focused on those with a graduation rate below 50%. By isolating and visualizing these underperforming schools in a bar graph, I highlighted the schools having an urgent need for targeted support and interventions. These struggling schools require additional resources and follow-up support throughout the students' secondary education. By addressing the challenges faced by these schools, we can work towards increasing overall graduation rates and ensuring every student has equal access to a quality education.
+
+
+## Dashboard
+
+<p align="center">
+  <img src="overall_tableau_mass.jpg?raw=true"  alt="My Image">
+<span style="font-size: small; text-align: right;">
+</p>
+
 
 ## Data Analysis
 
