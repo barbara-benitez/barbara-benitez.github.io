@@ -46,9 +46,9 @@ By addressing the challenges faced by these schools, we can work towards increas
   <img src="overall_tableau_mass.jpg?raw=true"  alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
-For access to the dashboard, please visit 
-  [link](https://public.tableau.com/app/profile/barbara.benitez4236/viz/MassechusettesEducationDataSet/MassachusettsEducationSummaryofMilestones)
-  .
+
+For access to the dashboard, please visit https://public.tableau.com/app/profile/barbara.benitez4236/viz/MassechusettesEducationDataSet/MassachusettsEducationSummaryofMilestones.
+
 
 ## Data Analysis
 
@@ -59,21 +59,44 @@ For access to the dashboard, please visit
 <span style="font-size: small; text-align: right;">
 </p>
 
-Analyzing college attendance and class size is crucial in understanding their impact on graduation rates and overall student success. College attendance is a significant indicator of students' preparedness for higher education and their ability to transition successfully into post-secondary institutions. By examining the relationship between class size and college attendance, we can identify potential factors that either facilitate or hinder students' access to and preparedness for college. Class size plays a vital role in shaping the learning environment, as it directly influences the level of individual attention and support students receive from teachers. Smaller class sizes have been associated with improved student engagement, personalized instruction, and better academic outcomes. Conversely, larger class sizes may lead to reduced student engagement, limited interaction with teachers, and increased challenges in meeting individual student needs. By analyzing college attendance and class size, we gain insights into how these factors contribute to graduation rates, helping inform targeted interventions and resource allocation to enhance student success and increase overall graduation rates.
+Analyzing college attendance and class size is crucial in understanding their impact on graduation rates and overall student success. College attendance is a significant indicator of students' preparedness for higher education and their ability to transition successfully into post-secondary institutions. By examining the relationship between class size and college attendance, we can identify potential factors that either facilitate or hinder students' access to and preparedness for college. 
+
+
+Contrary to expectations, the analysis of the data did not support the notion that smaller class sizes would lead to higher graduation rates. In fact, the findings revealed a rather surprising trend: there was a fairly linear increase in the graduation rate as class size increased. This unexpected result challenges the conventional belief that smaller class sizes inherently yield better outcomes. 
+
+The data suggest that other factors, such as pedagogical approaches, teacher effectiveness, or available resources, may have a more significant impact on graduation rates than class size alone. I recommmend further investigation  to better understand these factors and uncover the underlying reasons for this observed pattern. By understanding the nuanced dynamics at play, education policymakers and stakeholders can develop more targeted interventions and strategies to improve graduation rates and enhance student success.
 
 ### Top Performing Math Schools
+Early math skills have long been recognized as strong predictors of educational success. Research consistently shows that students with strong foundational math skills are more likely to excel academically and have better long-term educational outcomes. 
+
+Since these early math skills  are believed to serve as a crucial foundation for developing critical thinking and problem-solving abilities required for navigating the complexities of higher education, I summarized the performance of school districts as a percentage as shown in the chart that follows.
+
 
 <p align="center">
   <img src="math_pass.jpg?raw=true"  alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
 
+Performance success was divided into three groups by district based on the pass rate: top performing (performing in the 90th percentile or higher), acceptable (at or above 50th percentile) or unacceptable (under 50 percentile). 
+- Top performing: the pedagogy and methodologies employed by these schools should be observed and replicated as much as possible
+ I highly recommend using the top-performing schools as benchmarks for implementing pedagogical changes in math education. These schools have demonstrated exemplary performance and can offer valuable insights into effective teaching strategies, curriculum design, and instructional methodologies. By studying and implementing the successful practices observed in these schools, we can enhance math education across the district, leading to improved outcomes and increased graduation rates.
+- Unacceptable: For those districts that were underperforming, I am recommending early intervention and adoption of pedagogical changes that have provided success in the top-performing districts.
+
+
+
 ### Struggling Schools
+
+
 
 <p align="center">
   <img src="grad_percent.jpg?raw=true"  alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
+
+
+By singling out schools with graduation rates below 50%, I successfully identified the struggling institutions in need of immediate attention. Visualizing these underperforming schools through a bar graph highlighted the pressing requirement for targeted support and interventions.
+
+I strongly advocate for allocating additional resources and providing continuous support to these struggling schools throughout the secondary education. By addressing the specific challenges faced by these institutions, I believe that we can make substantial progress in boosting overall graduation rates and ensuring equitable access to a high-quality education for every student.
 
 ## Final thoughts
 The analysis of Massachusetts' education data provided crucial insights into the state of the school system. By understanding graduation rates, exploring the impact of class size on college attendance, identifying top math schools, and pinpointing struggling schools, we can develop targeted interventions and support systems to improve the overall quality of education. It is vital for the State of Massachusetts to invest in data-driven decision-making and continuously monitor progress to foster an educational environment that empowers all students to succeed.
