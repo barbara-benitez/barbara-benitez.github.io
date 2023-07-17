@@ -7,7 +7,7 @@ The management of blood sugar levels in diabetics has a **significant impact on 
 
 My administrator is trying to understand the current state of a large hospital system. She is swamped and needs some information to quickly make some decisions.  The data is comprised of 10 years worth of clinical care data for over 130 hospitals and integrated networks. I have been tasked with answering several questions. 
 
-I used SQL (primarily) and Excel to answer provide insight and make actionable recommendations.
+I used SQL (primarily) and Excel to answer provide insight and make actionable recommendations. SQL commands such as WHERE, FROM, GROUP BY, DISTINCT, ORDER BY, HAVING, COUNT, SUM, AVG, MAX, and LIMIT were utilized. The data was imported into Excel to generate visualizations like tables and histograms.
 
 
 
@@ -62,10 +62,11 @@ These findings provide insights into the relationship between HbA1c measurement,
 
 ## SQL Commands Used in this Project
 
+WHERE | FROM | GROUP BY | DISTINCT | ORDER BY | HAVING | COUNT | SUM | AVG | MAX | LIMIT
 
 I used https://csvfiddle.io/ to upload a csv file and convert it to a SQL file. This program allows for easy, 100% in-browser querying using SQL commands. 
 
-In this analysis, SQL commands such as WHERE, FROM, GROUP BY, DISTINCT, ORDER BY, HAVING, COUNT, SUM, AVG, MAX, and LIMIT were utilized. The data was imported into Excel to generate visualizations like tables and histograms.
+
 
 
 
