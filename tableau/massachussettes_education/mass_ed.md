@@ -7,7 +7,7 @@
 
 ## Introduction
 
-As a data scientist recently hired by the State of Massachusetts, my task was to analyze the education data obtained from the Massachusetts Department of Education website. The Department of Education Superintendent sought a comprehensive report to present to the school board, highlighting the state of the school system and addressing key concerns such as the impact of class size on college attendance, identifying top math schools, and pinpointing schools that are struggling the most. 
+As a data scientist recently hired by the State of Massachusetts, my task was to analyze the education data obtained from the Massachusetts Department of Education website. The Department of Education Superintendent sought a report to present to the school board, highlighting the state of the school system and addressing key concerns such as the impact of class size on college attendance, identifying top math schools, and pinpointing schools that are struggling the most. 
 
 The dataset used for this analysis was sourced from Kaggle and encompassed milestone data from over 1,800 schools and more than 950,000 students, specifically from the year 2017.  I will present the key findings and recommendations based on my analysis.
 
@@ -17,34 +17,36 @@ Understanding graduation rates is crucial as they serve as an essential metric f
 
 Identifying schools with low graduation rates helps focus attention on those areas requiring immediate intervention and resources. By addressing the factors contributing to low graduation rates, we can work towards providing every student with a fair chance at academic success and future opportunities. 
 
-## Key Findings and Recommendations:
+## Key Findings and Recommendations
 
-# The State of the School System:
 
-Using visualizations created with Tableau Public, I presented a comprehensive overview of the state's education system. The report included statistics such as enrollment numbers, graduation rates, and college attendance rates. By analyzing these metrics, the school board gained valuable insights into the overall performance of the system, enabling them to make informed decisions and prioritize areas for improvement.
+
+Using visualizations created with Tableau Public, I presented an overview of the state's education system. The report included statistics such as enrollment numbers, graduation rates, and college attendance rates. By analyzing these metrics, the school board gained valuable insights into the overall performance of the system, enabling them to make informed decisions and prioritize areas for improvement.
 
 1. Impact of Class Size on College Attendance:
 - Surprisingly, my analysis revealed an interesting relationship between class size and college attendance. Contrary to common assumptions, an increase in average class size seemed to positively correlate with a higher percentage of students attending college.
-- It was observed that smaller class sizes (less than 10 students) had significantly lower attendance rates, regardless of economic advantage or disadvantage.
+- It was observed that smaller class sizes (less than 10 students) had significantly lower college attendance rates, regardless of economic advantage or disadvantage.
   I recommend further investigation  to explore potential reasons for this, such as geographic location or specific student needs. Understanding these factors will help design targeted interventions to improve college attendance rates for students in smaller class sizes.
 
 2. Identifying Top Math Schools:
 Success in mathematics is often an indicator of logical reasoning skills that translate into post-secondary education success.
 - Utilizing data on the 4th-grade math pass rates, I identified the top-performing math schools in the state. I recommend that these schools be used as benchmarks for pedagogical change.
-- Top performing schools can provide valuable insights for improving math education throughout the district.
-  Observing practices and sharing them across the system will likely lead to enhanced performance in mathematics across all schools.
+Top performing schools can provide valuable insights for improving math education throughout the district.
+I recommend observing practices and sharing them across the system  to enhance performance in mathematics across all schools.
 
 3. Struggling Schools and Recommendations:
-To identify struggling schools, I focused on those with a graduation rate below 50%. By isolating and visualizing these underperforming schools in a bar graph, I highlighted the schools having an urgent need for targeted support and interventions. These struggling schools require additional resources and follow-up support throughout the students' secondary education. By addressing the challenges faced by these schools, we can work towards increasing overall graduation rates and ensuring every student has equal access to a quality education.
+To identify struggling schools, I focused on those with a graduation rate below 50%. By isolating and visualizing these underperforming schools in a bar graph, I highlighted the schools having an urgent need for targeted support and interventions.
+- I recommend that these struggling schools be provided with additional resources and follow-up support throughout the students' secondary education.
+By addressing the challenges faced by these schools, we can work towards increasing overall graduation rates and ensuring every student has equal access to a quality education.
 
 
 ## Dashboard
-
+ The snapshot that follows is of a dashboard that I devised in Tableau Public to illustrate key findings from the data. 
 <p align="center">
   <img src="overall_tableau_mass.jpg?raw=true"  alt="My Image">
 <span style="font-size: small; text-align: right;">
 </p>
-
+For access to the dashboard, please visit [Massachusetts Education Data Set](https://public.tableau.com/app/profile/barbara.benitez4236/viz/MassechusettesEducationDataSet/MassachusettsEducationSummaryofMilestones).
 
 ## Data Analysis
 
