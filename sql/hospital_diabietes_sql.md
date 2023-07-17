@@ -34,23 +34,38 @@ Does there appear to be a relationship between the number of lab procedures and 
    Do the majority of patients stay less than 7 days? Once patients stay over 7 days, are these patients very acute?
 
 ## Key Findings
-1. There were five race groups in the data. The unidentified group and the African American group had the highest number of lab procedures overall.
-2. There was definitely a direct relationship between the average number of lab procedures and the amount of time spent in the hospital. In fact, there was roughly a two procedure increase for each additional day the patient stayed in the hospital on average. 
+Here are the key findings and insights from the analysis:
+1. Treatment bias by race:
+- The unidentified and African American race groups had the highest number of lab procedures overall.
+- Average number of lab procedures was highest for the African American group, followed by the unidentified group.
+2. Number of Lab Procedures and Time Spent in the Hospital:
+- There was a direct relationship between the average number of lab procedures and the time spent in the hospital.
+- On average, there was roughly a two-procedure increase for each additional day a patient stayed in the hospital.
+3. Medical Specialties with Higher Procedure Counts: 
+- Six specialties exceeded the specified threshold of an average procedure count above 2.5 and a total procedure count above 50.
+- These specialties included Surgery-Thoracic, Surgery-Cardiovascular/Thoracic, Radiologist, Cardiology, Surgery-Vascular, and Radiology.
+4. Patients with Emergency Discharge Times Faster than Average:
+- A significant number of patients who had an emergency procedure left the hospital faster than the average patient.
+- It was noteworthy that a large portion of these patients did not have an identified specialty, raising questions about the nature of their emergencies.
+5. Patient Group: African-American or "Up" to Metformin:
+- There were 206 patients of African American race who were coded with "Up" to metformin.
+- Further analysis of this group's noteworthy characteristics may be necessary.  There were exactly 206 patients of African American race that were coded with metformin "Up".
+6. Distribution of Time Spent in the Hospital:
+  - The distribution of time spent in the hospital was right-skewed, with the majority of patients having short stays.
+- A significant proportion of patients (79.2%) stayed in the hospital for less than seven days.
+7. Hospital Stays by Duration:
+- Majority of patients stayed less than seven days.
+- Patients staying over seven days were not necessarily acute, suggesting the need for additional scrutiny and justification for longer stays.   
 
-3. There were 6 specialties that were performing more procedures than the specified threshold. None of these specialties seemed unreasonable.
-4. It was noteworthy that the largest group to leave the hospital faster than the average was unidentified in terms of specialty. Approximately 50% of these patients were over 50 years old. 
-5. There were exactly 206 patients of African American race that were coded with metformin "Up".
-6. The distribution of the time spent in the hospital was decidedly right-skewed; that is, most of the patients had short stays with the hospital.
-7. The data showed that 79.2% of the patients had stays of less than 7 days. Of the remaining 20.8%, the only 20.5% were acute. It appears that the administration should require additional scrutiny for those patients having longer stays without an acute diagnosis. 
-   
-
+These findings provide insights into the relationship between HbA1c measurement, hospital readmission rates, and overall safety. They can assist the hospital administration in making informed decisions to improve patient care and resource allocation.
 
 
 ## SQL Commands Used in this Project
 
-WHERE | FROM | GROUP BY | DISTINCT | ORDER BY | HAVING | COUNT | SUM | AVG | MAX | LIMIT
 
 I used https://csvfiddle.io/ to upload a csv file and convert it to a SQL file. This program allows for easy, 100% in-browser querying using SQL commands. 
+
+In this analysis, SQL commands such as WHERE, FROM, GROUP BY, DISTINCT, ORDER BY, HAVING, COUNT, SUM, AVG, MAX, and LIMIT were utilized. The data was imported into Excel to generate visualizations like tables and histograms.
 
 
 
