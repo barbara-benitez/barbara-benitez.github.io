@@ -93,4 +93,4 @@ I help organizations turn data into insight and insight into action.
 ---
 
 # **Contact**
-**LinkedIn:** (add your link here)
+**LinkedIn:** (https://www.linkedin.com/in/barbara-benitez-5669b547/)
