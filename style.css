@@ -229,3 +229,7 @@ p {
 .bb-h1 {
   margin-top: 0 !important;
 }
+
+.bb-btn[href="/analytics/"] {
+  display: none;
+}
