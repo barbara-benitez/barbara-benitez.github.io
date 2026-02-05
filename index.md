@@ -30,7 +30,7 @@ title: "Instructional Design Portfolio – Barbara Benitez"
 
   <div class="bb-hero__image">
     <!-- Replace the src with your portfolio intro image path -->
-    <img class="bb-portrait" src="/assets/img/barbara-portfolio-intro.jpg" alt="Barbara Benitez portrait">
+    <img class="bb-portrait" src="/assets/barbara-portfolio-intro.png" alt="Barbara Benitez portrait">
   </div>
 </div>
 
