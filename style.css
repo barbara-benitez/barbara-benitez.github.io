@@ -1,3 +1,8 @@
+.bb-hero {
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+}
+
 /* spacing on all sections */
 .section {
     margin-top: 4rem;
